@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+    <list default="true" id="69857388-f9fe-44e4-ad98-ed7b3e857103" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,7 +49,8 @@
       <updated>1586163439877</updated>
       <workItem from="1586163442980" duration="1814000" />
       <workItem from="1586167081374" duration="1913000" />
-
+      <workItem from="1586169639725" duration="218000" />
+      <workItem from="1586178296708" duration="468000" />
     </task>
     <task id="LOCAL-00001" summary="Commit test Peter">
       <created>1586167383924</created>
@@ -71,6 +73,21 @@
       <option name="project" value="LOCAL" />
       <updated>1586168801326</updated>
     </task>
+    <task id="LOCAL-00004" summary="Commit test">
+      <created>1586178357419</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1586178357419</updated>
+    </task>
+    <task id="LOCAL-00005" summary="commit">
+      <created>1586178734699</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1586178734699</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,17 +108,30 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit test Peter" />
+    <MESSAGE value="Commit test" />
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="WindowStateProjectService">
     <state x="603" y="223" key="#Notifications" timestamp="1586168262125">
       <screen x="0" y="0" width="1920" height="1170" />
     </state>
     <state x="603" y="223" key="#Notifications/1920.115.1536.840/0.0.1920.1170@0.0.1920.1170" timestamp="1586168262125" />
-
+    <state x="462" y="11" key="CommitChangelistDialog2" timestamp="1586178732704">
+      <screen x="0" y="0" width="1536" height="821" />
+    </state>
+    <state x="462" y="11" key="CommitChangelistDialog2/0.0.1536.821@0.0.1536.821" timestamp="1586178732704" />
+    <state x="578" y="159" key="CommitChangelistDialog2/1920.115.1536.840/0.0.1920.1170@0.0.1920.1170" timestamp="1586169149504" />
+    <state x="482" y="209" key="Vcs.Push.Dialog.v2" timestamp="1586178751511">
+      <screen x="0" y="0" width="1536" height="821" />
     </state>
     <state x="482" y="209" key="Vcs.Push.Dialog.v2/0.0.1536.821@0.0.1536.821" timestamp="1586178751511" />
     <state x="603" y="298" key="Vcs.Push.Dialog.v2/1920.115.1536.840/0.0.1920.1170@0.0.1920.1170" timestamp="1586169036238" />
-
+    <state x="656" y="338" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586178765915">
+      <screen x="0" y="0" width="1536" height="821" />
+    </state>
+    <state x="656" y="338" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.821@0.0.1536.821" timestamp="1586178765915" />
+    <state x="820" y="482" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.115.1536.840/0.0.1920.1170@0.0.1920.1170" timestamp="1586168233802" />
     <state x="679" y="356" key="git4idea.merge.GitPullDialog" timestamp="1586168721248">
       <screen x="0" y="0" width="1920" height="1170" />
     </state>
