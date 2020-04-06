@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="eb75b2ce-4b9b-4863-adc6-a3da8102b371" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="salina" />
+                <branch-info repo="$PROJECT_DIR$" source="branchsalina" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="salina" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="ProjectId" id="1aA0ZoHqzlQD28Nd2SYEb2mZzYV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eb75b2ce-4b9b-4863-adc6-a3da8102b371" name="Default Changelist" comment="" />
+      <created>1586163148692</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586163148692</updated>
+      <workItem from="1586163155872" duration="2750000" />
+    </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <created>1586167422916</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1586167422917</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="358" y="5" key="CommitChangelistDialog2" timestamp="1586167418059">
+      <screen x="0" y="0" width="1536" height="821" />
+    </state>
+    <state x="358" y="5" key="CommitChangelistDialog2/0.0.1536.821@0.0.1536.821" timestamp="1586167418059" />
+    <state x="360" y="147" key="Vcs.Push.Dialog.v2" timestamp="1586167499751">
+      <screen x="0" y="0" width="1536" height="821" />
+    </state>
+    <state x="360" y="147" key="Vcs.Push.Dialog.v2/0.0.1536.821@0.0.1536.821" timestamp="1586167499751" />
+    <state x="578" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586168241494">
+      <screen x="0" y="0" width="1536" height="821" />
+    </state>
+    <state x="578" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.821@0.0.1536.821" timestamp="1586168241494" />
+    <state x="701" y="205" key="git4idea.merge.GitPullDialog" timestamp="1586169315184">
+      <screen x="0" y="0" width="1536" height="821" />
+    </state>
+    <state x="701" y="205" key="git4idea.merge.GitPullDialog/0.0.1536.821@0.0.1536.821" timestamp="1586169315184" />
+  </component>
+</project>
