@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69857388-f9fe-44e4-ad98-ed7b3e857103" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,17 +15,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
-  <component name="IgnoredFileRootStore">
-    <option name="generatedRoots">
-      <set>
-        <option value="C:\Users\Peter Metzger\WebstormProjects\Datenbankanwendung_survey\.idea" />
-      </set>
-    </option>
-  </component>
-  <component name="ProjectId" id="1aA1AM1Npx3OcMs9rwcW3puXAnG" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -37,94 +23,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="69857388-f9fe-44e4-ad98-ed7b3e857103" name="Default Changelist" comment="" />
-      <created>1586163439877</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1586163439877</updated>
-      <workItem from="1586163442980" duration="1814000" />
-      <workItem from="1586167081374" duration="1913000" />
-      <workItem from="1586169624466" duration="251000" />
-    </task>
-    <task id="LOCAL-00001" summary="Commit test Peter">
-      <created>1586167383924</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1586167383924</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Commit test Peter">
-      <created>1586167410016</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1586167410016</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Commit test Peter">
-      <created>1586168801326</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1586168801326</updated>
-    </task>
-    <task id="LOCAL-00004" summary="New Branch">
-      <created>1586169739280</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1586169739280</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commit test Peter" />
-    <MESSAGE value="New Branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="New Branch" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="603" y="223" key="#Notifications" timestamp="1586168262125">
-      <screen x="0" y="0" width="1920" height="1170" />
-    </state>
-    <state x="603" y="223" key="#Notifications/1920.115.1536.840/0.0.1920.1170@0.0.1920.1170" timestamp="1586168262125" />
-    <state x="578" y="159" key="CommitChangelistDialog2" timestamp="1586169738704">
-      <screen x="0" y="0" width="1920" height="1170" />
-    </state>
-    <state x="578" y="159" key="CommitChangelistDialog2/1920.115.1536.840/0.0.1920.1170@0.0.1920.1170" timestamp="1586169738704" />
-    <state x="603" y="298" key="Vcs.Push.Dialog.v2" timestamp="1586169036238">
-      <screen x="0" y="0" width="1920" height="1170" />
-    </state>
-    <state x="603" y="298" key="Vcs.Push.Dialog.v2/1920.115.1536.840/0.0.1920.1170@0.0.1920.1170" timestamp="1586169036238" />
-    <state x="820" y="482" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586178287846">
-      <screen x="0" y="0" width="1920" height="1170" />
-    </state>
-    <state x="820" y="482" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.115.1536.840/0.0.1920.1170@0.0.1920.1170" timestamp="1586178287846" />
-    <state x="679" y="356" key="git4idea.merge.GitPullDialog" timestamp="1586168721248">
-      <screen x="0" y="0" width="1920" height="1170" />
-    </state>
-    <state x="679" y="356" key="git4idea.merge.GitPullDialog/1920.115.1536.840/0.0.1920.1170@0.0.1920.1170" timestamp="1586168721248" />
+
   </component>
 </project>
