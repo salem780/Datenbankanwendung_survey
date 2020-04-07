@@ -1,4 +1,0 @@
-CREATE TABLE course(
-c_token CHAR(4) PRIMARY KEY,
-c_name VARCHAR (32) NOT NULL UNIQUE,
-)
