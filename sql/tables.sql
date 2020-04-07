@@ -1,6 +1,7 @@
 CREATE TABLE survey(
 s_token CHAR(4) PRIMARY KEY,
 s_title VARCHAR (32) NOT NULL UNIQUE,
+username VARCHAR (32),
 FOREIGN KEY (username) REFERENCES surveyor (username)
 );
 
@@ -12,6 +13,8 @@ password VARCHAR (32) NOT NULL
 
 
 CREATE TABLE answered (
+    MNR CHAR(8),
+    s_token CHAR(4),
     FOREIGN KEY (MNR) REFERENCES Student (MNR),
     FOREIGN KEY (s_token) REFERENCES Survey (s_token),
     comment VARCHAR (256),
@@ -25,6 +28,9 @@ c_name VARCHAR (32) NOT NULL
 );
 
 CREATE TABLE Rating (
+    MNR CHAR(4),
+    ID INT,
+    s_token CHAR(4),
     FOREIGN KEY (MNR) REFERENCES Student (MNR),
     FOREIGN KEY (ID) REFERENCES Question (ID),
     FOREIGN KEY (s_token) REFERENCES Question (s_token),
@@ -35,19 +41,23 @@ CREATE TABLE Rating (
 CREATE TABLE student (
 MNR CHAR(8) PRIMARY KEY,
 student_name VARCHAR (32) NOT NULL,
+c_token CHAR(8),
 FOREIGN KEY (c_token) REFERENCES course (c_token)
 );
 
 CREATE TABLE Question (
 ID INT,
 Text VARCHAR(256),
+s_token CHAR(4),
 FOREIGN KEY(s_token) REFERENCES survey(s_token),
- CONSTRAINT PK_Question PRIMARY KEY (ID,s_token)
+CONSTRAINT PK_Question PRIMARY KEY (ID, s_token)
 );
 
 
 CREATE TABLE Activation (
+c_token CHAR(8),
+s_token CHAR(4),
 FOREIGN KEY(c_token) REFERENCES course(c_token) ,
 FOREIGN KEY(s_token) REFERENCES survey(s_token),
- CONSTRAINT PK_Activation PRIMARY KEY (c_token, s_token )
+CONSTRAINT PK_Activation PRIMARY KEY (c_token, s_token )
 );
