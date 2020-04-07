@@ -1,5 +1,0 @@
-CREATE TABLE Question (
-Number INT PRIMARY KEY,
-Text VARCHAR(256),
-FOREIGN KEY(s_token) VARCHAR(4) REFERENCES survey(s_token) PRIMARY KEY
-)
