@@ -44,12 +44,12 @@ student_name VARCHAR (32) NOT NULL,
 c_token CHAR(8),
 FOREIGN KEY (c_token) REFERENCES course (c_token)
 );
+FOREIGN KEY(s_token) REFERENCES survey(s_token),
 
 CREATE TABLE Question (
 ID INT,
 Text VARCHAR(256),
 s_token CHAR(4),
-FOREIGN KEY(s_token) REFERENCES survey(s_token),
 CONSTRAINT PK_Question PRIMARY KEY (ID, s_token)
 );
 

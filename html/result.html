@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto ;
+            background-color: #2196F3;
+            padding: 10px;
+        }
+
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0);
+            padding: 20px;
+            font-size: 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Ergebnisauswertung</h1>
+
+<div class="grid-container">
+    <div class="grid-item">
+
+        <form>
+            <label for="surveytitle">Fragebogentitel:</label>
+            <select name="surveytitle" size="5">
+                <option>Titel1</option>
+                <option>Titel2</option>
+                <option>Titel3</option>
+                <option>Titel4</option>
+                <option>Titel5</option>
+                <option>Titel6</option>
+                <option>Titel7</option>
+                <option>Titel8</option>
+                <option>Titel9</option>
+                <option>Titel10</option>
+            </select>
+            <p>Hier waehlt man die freigeschalteten und ausgefuellten Frageboegen aus</p>
+
+    </div>
+
+
+
+    <div class="grid-item">
+            <label for="course">Kurs:</label>
+            <select name="course" size="5">
+                <option>WWI_118</option>
+                <option>WWI_218</option>
+                <option>WWI_318</option>
+
+            </select>
+        <p>Hier waehlt man die Kurse aus, die den Fragebogen bereits vollstaendig ausgefuellt haben</p>
+
+        <input type="submit" value="Suchen" />
+    </div>
+
+
+   <div class="grid-item">
+
+       <form>
+
+       <table id="resulttable">
+           <h2>Fragebogenauswertung</h2>
+
+           <tr>
+               <th>Frage</th>
+               <th>Durchschnitt</th>
+               <th>Max</th>
+               <th>Min</th>
+               <th>Standardabweichung</th>
+
+           </tr>
+
+           <tr>
+               <td>Frage 1</td>
+               <td>50</td>
+               <td>100</td>
+               <td>20</td>
+               <td>4,5</td>
+
+           </tr>
+           <tr>
+
+
+       </table>
+   </form>
+
+   </div>
+
+     <div class="grid-item">
+
+         <h2>Kommentare der Befragten</h2>
+
+         <label for="comments"></label>
+         <textarea id="text" name="text" cols="35" rows="4"></textarea>
+
+
+
+     </div>
+ <!--<    <div class="grid-item">9</div>
+
+-->
+</div>
+
+
+</body>
+</html>
