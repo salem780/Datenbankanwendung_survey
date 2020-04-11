@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Datenbanken Survey1</title>
+    <title>Fragebogen</title>
   </head>
   <body>
-    <a href="activated_survey.php">This is a link</a>
-
+  <h1>Fragebogen auswählen: </h1>
   </body>
 </html>
