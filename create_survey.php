@@ -10,7 +10,6 @@ $courses = $db->query("select c_token from course;");
 //echo $spalte . $value;
 //}
 
-
 ?>
 
 

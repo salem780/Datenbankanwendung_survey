@@ -6,7 +6,7 @@
     <title>Datenbanken Survey1</title>
   </head>
   <body>
-    <a href="activated_survey.php">This is a link</a>
+    <a href="activated_surveys.php">This is a link</a>
 
   </body>
 </html>
