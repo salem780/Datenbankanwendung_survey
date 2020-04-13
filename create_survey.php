@@ -14,7 +14,7 @@ $courses = $db->query("select c_token from course;");
   <body>
 <h1> Fragebogen erstellen </h1>
 
-<form action="db_create_survey.php" method="POST">
+<form action="processing_create_survey.php" method="POST">
 <table>
 <tr>
 <th> <label>Titel: </th> <th> <input type="text" name="s_title" required> </label> </th>
