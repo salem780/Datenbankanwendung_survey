@@ -1,5 +1,6 @@
 <?php
 
+//Author - Lea Buchhold
 //Prüfen, ob Titel bereits vergeben ist
 function check_s_title($s_title, $db){
 $check_s_title = $db->query("select s_title from survey where s_title = '".$s_title."';");
@@ -12,6 +13,7 @@ if($number_of_rows > 0){
   }
 }
 
+//Author - Lea Buchhold
 //Prüfen, ob Kürzel bereits vergeben ist
 function check_s_token($s_token, $db){
 $check_s_token = $db->query("select s_token from survey where s_token = '".$s_token."';");

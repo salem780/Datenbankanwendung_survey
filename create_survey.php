@@ -1,4 +1,8 @@
 <?php
+//Author - Lea Buchhold
+//Formular, um Daten für den zu erstellenden Fragebogen zu erfassen
+
+
 include "db_connection.php";
 $courses = $db->query("select c_token from course;");
 
@@ -30,8 +34,8 @@ $courses = $db->query("select c_token from course;");
 <label>Kurse, die an der Umfrage teilnehmen dürfen: </label> <br>
 <?php
 //Dynamische Erzeugung von Checkboxen und Labels nach der Anzahl der bestehenden Kurse
-while(($row = $courses->fetch_object()) != false) {
-echo "<label><input type='checkbox' name='course[]' value='$row->c_token'>$row->c_token</label> <br>";
+while($row = mysqli_fetch_assoc($courses)){
+echo "<label><input type='checkbox' name='course[]' value=".$row['c_token']."'>".$row['c_token']."</label> <br>";
 }
 ?> <br>
 <input type="submit" value="Fragebogen erstellen">

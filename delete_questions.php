@@ -1,4 +1,7 @@
 <?php
+//Author - Lea Buchhold
+//Verarbeitung des Formulars der Datei processing_delete_or_add_questions.php (Löschen der ausgewählten Fragen)
+
 include "db_connection.php";
 
 //Prüfen, ob mindestens eine Frage ausgewählt wurde

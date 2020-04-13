@@ -1,4 +1,9 @@
 <?php
+//Author - Lea Buchhold
+//Verarbeiten des Formulars aus der Datei delete_or_add_questions.php (Je nach geklickten Button Hinzufügen oder Löschen von Fragen)
+//Beim Löschen: Auswahl der Fragen des Fragebogens, sodass zu löschende Fragen angeklickt werden können
+//Beim Hinzufügen: Abfrage, wie viele neue Fragen hinzugefügt werden sollen
+
 include "db_connection.php";
 
 $selected_survey = $_POST['surveys'];

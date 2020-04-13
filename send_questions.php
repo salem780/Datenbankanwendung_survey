@@ -1,6 +1,9 @@
 <?php
+//Author - Lea Buchhold
+//Verarbeitung des Formulars der Datei processing_create_survey (Einfügen der Fragen)
+//Ausgabe des erstellten Fragebogens
+
 include "db_connection.php";
-session_start();
 
 //Einfügen der Fragen in die Tabelle Question
 $id = 1;

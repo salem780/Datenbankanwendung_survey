@@ -1,4 +1,8 @@
 <?php
+//Author - Lea Buchhold
+//Auswahl, eines Fragebogens
+//Diesem Fragebogen entweder Fragen hinzufügen oder Fragen löschen
+
 include "db_connection.php";
 
 //alle Fragebögen auslesen, die der User erstellt hat

@@ -1,4 +1,8 @@
 <?php
+//Author - Lea Buchhold
+//Formular zum Löschen eines Fragebogens
+//Durchführen des Löschens
+
 include "db_connection.php";
 
 //alle Fragebögen auslesen, die der User erstellt hat

@@ -1,4 +1,8 @@
 <?php
+//Author - Lea Buchhold
+//Verarbeitung der Informationen des Formulars aus der Datei copy_survey.php (Einfügen des Titels, des Kürzels etc. in diverse Tabellen)
+//Kopieren der Fragen
+
 include "db_connection.php";
 include "functions.php";
 
@@ -44,6 +48,19 @@ echo "<a href='copy_survey.php'>Zurück zu: Fragebogen kopieren</a> <br>";
             //Einfügen der Information, für welche(n) Kurs(e) der Fragebogen freigeschaltet ist
             foreach ($_POST['course'] as $c_token) {
                 $db->query("insert into activation(c_token, s_token) values ('".$c_token."', '".$s_token."');");
+            }
+
+            //Auslesen der freigeschalteten Studenten, Speichern dieser in einem Array
+            $activated_students =array();
+            foreach ($_POST['course'] as $c_token) {
+                $result = $db->query("select MNR from student where c_token = '".$c_token."';");
+                while($row = mysqli_fetch_assoc($result)){
+                $activated_students[] = $row["MNR"];
+                }
+            }
+            //Einfügen der Statusinformation für die freigeschalteten Studenten
+            for($i=0; $i < count($activated_students); $i++){
+                $db->query("insert into answered (MNR, s_token, status) values ('".$activated_students[$i]."', '".$s_token."', 0);");
             }
 
             //Speichern der Fragen des zu kopierenden Fragebogens

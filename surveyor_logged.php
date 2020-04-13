@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<!--
+Author - Lea Buchhold
+Übersichtsseite, die erscheint, sobald sich der Fragebogenerfasser anmeldet. -->
 <html>
   <head>
     <meta charset="utf-8" />

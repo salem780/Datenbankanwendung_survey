@@ -1,6 +1,11 @@
 <?php
+//Author - Lea Buchhold
+//Verarbeitung des Formulars der Datei add_questions.php (Einfügen der zusätzlichen Fragen)
+//Anzeigen der hinzugefügten Fragen
+
 include "db_connection.php";
 
+//Bisherige maximale ID auslesen
 $result = $db->query("select max(id) from question where s_token = '".$_POST["s_token"]."';");
 $max_id = mysqli_fetch_assoc($result);
 $max_id = $max_id["max(id)"];

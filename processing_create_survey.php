@@ -1,8 +1,11 @@
 <?php
+//Author - Lea Buchhold
+//Verarbeitung der Informationen des Formulars der Datei create_survey.php (Einfügen des Titels, des Kürzels etc. in diverse Tabellen)
+//Erzeugen eines Formulars, das das Erfassen der Fragen ermöglicht
+
 include "db_connection.php";
 include "functions.php";
 
-session_start();
 
 //Eingaben der Inputfelder auslesen
 $s_title = $_POST["s_title"];
@@ -41,10 +44,26 @@ echo 'Fehler beim Ausführen des SQL Befehls';
 foreach ($_POST['course'] as $c_token) {
     $db->query("insert into activation(c_token, s_token) values ('".$c_token."', '".$s_token."');");
 }
-echo  "<h1>Hier bitte die Fragen erfassen: </h1>";
+
+//Auslesen der freigeschalteten Studenten, Speichern dieser in einem Array
+$activated_students =array();
+foreach ($_POST['course'] as $c_token) {
+    $result = $db->query("select MNR from student where c_token = '".$c_token."';");
+    while($row = mysqli_fetch_assoc($result)){
+    $activated_students[] = $row["MNR"];
+    }
+}
+//Einfügen der Statusinformation für die freigeschalteten Studenten
+for($i=0; $i < count($activated_students); $i++){
+    $db->query("insert into answered (MNR, s_token, status) values ('".$activated_students[$i]."', '".$s_token."', 0);");
+}
+
+
+
 //   Formular, um Fragen zu erfassen
-//   Dynamische Erzeugung der Felder durch for Schleife
+echo  "<h1>Hier bitte die Fragen erfassen: </h1>";
 echo "<form action='send_questions.php' method='post'>";
+//    Dynamische Erzeugung der Felder durch eine for Schleife
       for($i=1; $i <= $number_of_questions; $i++){
       echo "<label for='text'>Frage $i </label> <br>
       <textarea id='text' name='questions[]' cols='50' rows='4' required></textarea> <br> <br>";

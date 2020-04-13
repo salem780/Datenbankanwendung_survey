@@ -1,4 +1,7 @@
 <?php
+//Author - Lea Buchhold
+//Verarbeitung des Formulars der Datei processing_delete_or_send_added_questions.php (Erzeugung der Felder für die hinzuzufügende Fragen)
+
 include "db_connection.php";
 
 $number_of_questions = $_POST["number_of_questions"];
