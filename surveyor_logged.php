@@ -1,3 +1,7 @@
+<?php
+include "session_surveyor.php";
+?>
+
 <!DOCTYPE html>
 <!--
 Author - Lea Buchhold
@@ -14,6 +18,7 @@ Author - Lea Buchhold
   <a href="delete_survey.php">Fragebogen löschen</a> <br>
   <a href="copy_survey.php">Bestehenden Fragebogen kopieren</a> <br>
   <a href="delete_or_add_questions.php">Fragen löschen oder hinzufügen</a> <br> <br>
-  <a href="rating.php">Fragebogen auswerten</a>
+  <a href="rating.php">Fragebogen auswerten</a><br>
+  <a href="logout.php">ausloggen</a>
   </body>
 </html>
