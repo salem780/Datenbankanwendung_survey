@@ -16,8 +16,7 @@ include "session_student.php";
                        <div class="wrapper-main">
                        <section class="section-default">
                        <h1>Demo Seite zum Test für Studenten Login</h1>
-                       <a href="logout.php">ausloggen</a><br>
-                       <p>Hier gehts <a href="registration.php">zur Registrierung</a> und hier gehts zum Studenten <a href="student_login.php">LogIn</a>.</p>
+                       <a href="logout.php">ausloggen</a>
                        </section>
                        </div>
                    </main>
