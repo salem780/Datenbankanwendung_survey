@@ -17,6 +17,7 @@ echo "<option>".$row["s_title"]."</option>";
 }
 echo "<input type='submit' value='Fragebogen löschen' name='submit_delete'>";
 echo "</select></form>";
+echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a>";
 
 if(isset($_POST["submit_delete"])){
 
@@ -28,12 +29,8 @@ $s_token = mysqli_fetch_assoc($s_token);
 $s_token = $s_token["s_token"];
 
 //Löschen des Fragebogens
-if($db->query("delete from survey where s_token = '".$s_token."';")){
-echo "Der Fragebogen wurde erfolgreich gelöscht! <br>";
-}else{
-echo "Ooops da ist wohl etwas schief gegangen.";
-}
-echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a>";
+$db->query("delete from survey where s_token = '".$s_token."';");
 
+header("location:delete_survey.php");
 }
 ?>

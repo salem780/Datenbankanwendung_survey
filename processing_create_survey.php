@@ -41,24 +41,14 @@ echo 'Fehler beim Ausführen des SQL Befehls';
 }
 
 //Einfügen der Information, für welche(n) Kurs(e) der Fragebogen freigeschaltet ist
+//Auslesen der freigeschalteten Studenten und Einfügen der Statusinformation für die freigeschalteten Studenten
 foreach ($_POST['course'] as $c_token) {
     $db->query("insert into activation(c_token, s_token) values ('".$c_token."', '".$s_token."');");
-}
-
-//Auslesen der freigeschalteten Studenten, Speichern dieser in einem Array
-$activated_students =array();
-foreach ($_POST['course'] as $c_token) {
     $result = $db->query("select MNR from student where c_token = '".$c_token."';");
     while($row = mysqli_fetch_assoc($result)){
-    $activated_students[] = $row["MNR"];
+    $db->query("insert into answered (MNR, s_token, status) values ('".$row["MNR"]."', '".$s_token."', 0);");
     }
 }
-//Einfügen der Statusinformation für die freigeschalteten Studenten
-for($i=0; $i < count($activated_students); $i++){
-    $db->query("insert into answered (MNR, s_token, status) values ('".$activated_students[$i]."', '".$s_token."', 0);");
-}
-
-
 
 //   Formular, um Fragen zu erfassen
 echo  "<h1>Hier bitte die Fragen erfassen: </h1>";
