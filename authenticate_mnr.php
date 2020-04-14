@@ -18,7 +18,7 @@ if ($stmt = $db->prepare('SELECT mnr FROM Student WHERE mnr = ?')) {
     	//Erfolgreiche Verifizierung, Session wird gestartet
     	session_regenerate_id();
         $_SESSION['mnr'] = $_POST['mnr'];
-        header("Location: student_logged.php");
+        header("Location: activated_surveys.php");
     }
     //Fehlermeldung
     else {
