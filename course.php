@@ -1,6 +1,6 @@
 <?php
  //Author - Peter Metzger
- //Registrieren eines neuen Kurses
+ //Kursübersicht
 include "db_connection.php";
 include "session_surveyor.php";
 ?>
@@ -24,6 +24,6 @@ echo "<label><input type='radio' name='course[]' value=".$row['c_token'].">".$ro
 ?> <br>
 <button type="submit" name="submit">Diesen Kurs bearbeiten</button></br>
 </form>
-<p>Hier gehts zurück <a href='surveyor_logged.php'>zur Übersicht</a>.</p>
+<p>Hier gehts zurück zum <a href='new_course.php'>Kurs erstellen</a> und hier zur <a href='surveyor_logged.php'>Startseite</a>.</p>
   </body>
 </html>

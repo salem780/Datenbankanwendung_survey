@@ -1,5 +1,5 @@
 <?php
- //Author - Peter Metzger
+ //Author: Peter Metzger
  //Ausloggen
 session_start();
 session_destroy();

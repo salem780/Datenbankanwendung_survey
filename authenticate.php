@@ -4,7 +4,7 @@
 include "db_connection.php";
 session_start();
 
-// Überprüfung ob Werte eingetragen
+//Überprüfung ob Werte eingetragen
 if (!isset($_POST['username'], $_POST['password'])) {
 // Fehlermeldung
 	exit('Bitte das Formular komplett ausfüllen');

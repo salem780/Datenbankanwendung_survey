@@ -4,9 +4,9 @@
 include "db_connection.php";
 session_start();
 
-// Überprüfung ob Wert eingetragen
+//Überprüfung ob Wert eingetragen
 if (!isset($_POST['mnr'])) {
-// Fehlermeldung
+//Fehlermeldung
 	exit('Bitte das Formular komplett ausfüllen');
 }
 //Überprüfung ob Matrikelnummer vorhanden
