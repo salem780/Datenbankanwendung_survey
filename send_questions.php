@@ -4,6 +4,13 @@
 //Ausgabe des erstellten Fragebogens
 
 include "session_surveyor.php";
+
+//Cross-Site-Scripting verhindern
+if (!isset($_POST["submit_questions"])) {
+    echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a><br>";
+	exit("So geht das aber nicht!");
+}
+
 include "db_connection.php";
 
 //Einfügen der Fragen in die Tabelle Question

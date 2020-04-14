@@ -38,7 +38,7 @@ while($row = mysqli_fetch_assoc($courses)){
 echo "<label><input type='checkbox' name='course[]' value=".$row['c_token'].">".$row['c_token']."</label> <br>";
 }
 ?> <br>
-<input type="submit" value="Fragebogen erstellen">
+<input type="submit" name="submit_survey" value="Fragebogen erstellen">
 </form>
   </body>
 </html>

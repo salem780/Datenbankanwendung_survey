@@ -3,6 +3,13 @@
 //Verarbeitung des Formulars der Datei processing_delete_or_send_added_questions.php (Erzeugung der Felder für die hinzuzufügende Fragen)
 
 include "session_surveyor.php";
+
+//Cross-Site-Scripting verhindern
+if (!isset($_POST["add_number_of_questions"])) {
+    echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a><br>";
+	exit("So geht das aber nicht!");
+}
+
 include "db_connection.php";
 
 $number_of_questions = $_POST["number_of_questions"];

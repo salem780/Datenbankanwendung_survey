@@ -4,6 +4,13 @@
 //Kopieren der Fragen
 
 include "session_surveyor.php";
+
+//Cross-Site-Scripting verhindern
+if (!isset($_POST["submit_copy"])) {
+    echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a><br>";
+	exit("So geht das aber nicht!");
+}
+
 include "db_connection.php";
 include "functions.php";
 

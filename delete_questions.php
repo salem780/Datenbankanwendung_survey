@@ -3,6 +3,13 @@
 //Verarbeitung des Formulars der Datei processing_delete_or_add_questions.php (Löschen der ausgewählten Fragen)
 
 include "session_surveyor.php";
+
+//Cross-Site-Scripting verhindern
+if (!isset($_POST["submit_delete_questions"])) {
+    echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a><br>";
+	exit("So geht das aber nicht!");
+}
+
 include "db_connection.php";
 
 //Prüfen, ob mindestens eine Frage ausgewählt wurde

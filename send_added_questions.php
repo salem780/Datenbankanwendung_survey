@@ -4,6 +4,13 @@
 //Anzeigen der hinzugefügten Fragen
 
 include "session_surveyor.php";
+
+//Cross-Site-Scripting verhindern
+if (!isset($_POST["send_added_questions"])) {
+    echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a><br>";
+	exit("So geht das aber nicht!");
+}
+
 include "db_connection.php";
 
 //Bisherige maximale ID auslesen
