@@ -3,6 +3,7 @@
 //Verarbeitung des Formulars der Datei processing_create_survey (Einfügen der Fragen)
 //Ausgabe des erstellten Fragebogens
 
+include "session_surveyor.php";
 include "db_connection.php";
 
 //Einfügen der Fragen in die Tabelle Question

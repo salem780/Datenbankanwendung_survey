@@ -3,10 +3,11 @@
 //Formular zum Löschen eines Fragebogens
 //Durchführen des Löschens
 
+include "session_surveyor.php";
 include "db_connection.php";
 
 //alle Fragebögen auslesen, die der User erstellt hat
-$surveys = $db->query("select s_title from survey where username = 'username';");
+$surveys = $db->query("select s_title from survey where username = '".$_SESSION['username']."';");
 
 echo "<h1> Fragebogen löschen </h1>";
 //Combobox zum Auswählen des zu löschenden Fragebogens

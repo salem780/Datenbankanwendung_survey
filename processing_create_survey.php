@@ -3,6 +3,7 @@
 //Verarbeitung der Informationen des Formulars der Datei create_survey.php (Einfügen des Titels, des Kürzels etc. in diverse Tabellen)
 //Erzeugen eines Formulars, das das Erfassen der Fragen ermöglicht
 
+include "session_surveyor.php";
 include "db_connection.php";
 include "functions.php";
 
@@ -36,7 +37,7 @@ echo "<a href='create_survey.php'>Zurück zu: Fragebogen erstellen</a> <br>";
 }else{
 
 //Einfügen der Inputfelderdaten in die Tabelle Survey
-if(!$db->query("insert into survey (s_token, s_title, username) values ('".$s_token."', '".$s_title."', 'username');")){
+if(!$db->query("insert into survey (s_token, s_title, username) values ('".$s_token."', '".$s_title."', '".$_SESSION['username']."');")){
 echo 'Fehler beim Ausführen des SQL Befehls';
 }
 

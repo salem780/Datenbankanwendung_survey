@@ -2,10 +2,11 @@
 //Author - Lea Buchhold
 //Formular, um Daten für den zu kopierenden Fragebogen zu erfassen (Neuer Titel, neues Kürzel, zugewiesene Kurse)
 
+include "session_surveyor.php";
 include "db_connection.php";
 
 //alle Fragebögen auslesen, die der User erstellt hat
-$surveys = $db->query("select s_title from survey where username = 'username';");
+$surveys = $db->query("select s_title from survey where username = '".$_SESSION['username']."';");
 
 //Kurse auslesen:
 $courses = $db->query("select c_token from course;");

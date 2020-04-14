@@ -3,6 +3,7 @@
 //Verarbeitung der Informationen des Formulars aus der Datei copy_survey.php (Einfügen des Titels, des Kürzels etc. in diverse Tabellen)
 //Kopieren der Fragen
 
+include "session_surveyor.php";
 include "db_connection.php";
 include "functions.php";
 
@@ -41,7 +42,7 @@ echo "<a href='copy_survey.php'>Zurück zu: Fragebogen kopieren</a> <br>";
 
 
             //Einfügen der Inputfelderdaten in die Tabelle Survey
-            if(!$db->query("insert into survey (s_token, s_title, username) values ('".$s_token."', '".$s_title."', 'username');")){
+            if(!$db->query("insert into survey (s_token, s_title, username) values ('".$s_token."', '".$s_title."', '".$_SESSION['username']."');")){
             echo 'Fehler beim Einfügen in die Tabelle Survey';
             }
 

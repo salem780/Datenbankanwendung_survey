@@ -3,10 +3,11 @@
 //Auswahl, eines Fragebogens
 //Diesem Fragebogen entweder Fragen hinzufügen oder Fragen löschen
 
+include "session_surveyor.php";
 include "db_connection.php";
 
 //alle Fragebögen auslesen, die der User erstellt hat
-$surveys = $db->query("select s_title from survey where username = 'username';");
+$surveys = $db->query("select s_title from survey where username = '".$_SESSION['username']."';");
 ?>
 
 <!DOCTYPE html>
