@@ -1,3 +1,4 @@
+//Author: Alissa Templin
 <?php session_start(); ?>
 
 <?php

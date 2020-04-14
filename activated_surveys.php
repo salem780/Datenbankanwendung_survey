@@ -1,3 +1,4 @@
+//Author: Alissa Templin
 <?php
 include "db_connection.php";
 $survey_active = $db->query("Select * from survey, activation, student WHERE survey.s_token = activation.s_token AND activation.c_token = student.c_token;");
