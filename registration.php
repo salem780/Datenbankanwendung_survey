@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- <!--Author - Peter Metzger
+ <!--Author: Peter Metzger
  Registrierungsseite für Befrager-->
        <html>
          <head>

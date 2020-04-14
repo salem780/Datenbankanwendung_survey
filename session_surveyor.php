@@ -1,5 +1,5 @@
 <?php
- //Author - Peter Metzger
+ //Author: Peter Metzger
  //Session für Befrager
 session_start();
 if(!isset($_SESSION['username'])) {

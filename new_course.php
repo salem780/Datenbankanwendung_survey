@@ -1,4 +1,6 @@
 <?php
+ //Author - Peter Metzger
+ //Startseite neuen Kurs erstellen
 include "session_surveyor.php";
 ?>
 

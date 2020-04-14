@@ -1,11 +1,11 @@
 <?php
  //Author - Peter Metzger
- //Alle Matrikelnummern eines ausgewählten Kurses und neue Matrikelnummern hinzufügen
+ //Alle Matrikelnummern eines ausgewählten Kurses und neue Matrikelnummern hinzufügen Felder
 include "db_connection.php";
 include "session_surveyor.php";
 
 if (!isset($_POST['course'])){
-// Fehlermeldung
+//Fehlermeldung
 	exit('Bitte einen Kurs auswählen');
 }
 ?>
@@ -29,7 +29,7 @@ if (!isset($_POST['course'])){
 
  echo "<h4>$c_token</h4>";
 
-//Ausgeben der eingegebenen Daten
+//Ausgeben der Daten
 while($row = mysqli_fetch_assoc($mnr)) {
   echo $row["mnr"] . "<br>";
  }

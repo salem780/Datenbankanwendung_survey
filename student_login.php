@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- <!--Author - Peter Metzger
+ <!--Author: Peter Metzger
  LogIn Seite für Studenten-->
               <html>
                 <head>
