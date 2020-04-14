@@ -8,7 +8,7 @@ FOREIGN KEY (username) REFERENCES surveyor (username) on delete cascade on updat
 
 CREATE TABLE surveyor (
 username VARCHAR (32) PRIMARY KEY,
-password VARCHAR (128) NOT NULL
+password VARCHAR (256) NOT NULL
 );
 
 
