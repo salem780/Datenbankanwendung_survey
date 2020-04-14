@@ -5,6 +5,13 @@
 //Beim Hinzufügen: Abfrage, wie viele neue Fragen hinzugefügt werden sollen
 
 include "session_surveyor.php";
+
+//Cross-Site-Scripting verhindern
+if (!isset($_POST["submit_delete_questions"]) AND !isset($_POST["submit_add_questions"])) {
+    echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a><br>";
+	exit("So geht das aber nicht!");
+}
+
 include "db_connection.php";
 
 $selected_survey = $_POST['surveys'];
@@ -32,7 +39,7 @@ $question_number++;
  }
  //Verstecktes Inputfeld, um Umfragenkürzel mit zu übergeben
  echo "<input type='hidden' name='s_token' value=".$s_token.">";
- echo "<br> <input type='submit' value='Frage(n) löschen'>";
+ echo "<br> <input type='submit' name='submit_delete_questions' value='Frage(n) löschen'>";
  echo "</form>";
 
 

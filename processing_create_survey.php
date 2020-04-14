@@ -4,9 +4,15 @@
 //Erzeugen eines Formulars, das das Erfassen der Fragen ermöglicht
 
 include "session_surveyor.php";
+
+//Cross-Site-Scripting verhindern
+if (!isset($_POST["submit_survey"])) {
+    echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a><br>";
+	exit("So geht das aber nicht!");
+}
+
 include "db_connection.php";
 include "functions.php";
-
 
 //Eingaben der Inputfelder auslesen
 $s_title = $_POST["s_title"];
@@ -61,7 +67,7 @@ echo "<form action='send_questions.php' method='post'>";
       }
       //Verstecktes Input, um Umfragenkürzel mit zu übergeben
       echo "<input type='hidden' value=".$s_token." name='s_token'/>";
-      echo "<input type='submit' value='Fragen abschicken'/></form>";
+      echo "<input type='submit' name='submit_questions' value='Fragen abschicken'/></form>";
 }
 }
 }
