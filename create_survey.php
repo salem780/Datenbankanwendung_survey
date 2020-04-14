@@ -2,7 +2,7 @@
 //Author - Lea Buchhold
 //Formular, um Daten für den zu erstellenden Fragebogen zu erfassen
 
-
+include "session_surveyor.php";
 include "db_connection.php";
 $courses = $db->query("select c_token from course;");
 

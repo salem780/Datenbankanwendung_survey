@@ -3,6 +3,7 @@
 //Verarbeitung des Formulars der Datei add_questions.php (Einfügen der zusätzlichen Fragen)
 //Anzeigen der hinzugefügten Fragen
 
+include "session_surveyor.php";
 include "db_connection.php";
 
 //Bisherige maximale ID auslesen

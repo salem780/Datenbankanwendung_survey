@@ -4,6 +4,7 @@
 //Beim Löschen: Auswahl der Fragen des Fragebogens, sodass zu löschende Fragen angeklickt werden können
 //Beim Hinzufügen: Abfrage, wie viele neue Fragen hinzugefügt werden sollen
 
+include "session_surveyor.php";
 include "db_connection.php";
 
 $selected_survey = $_POST['surveys'];

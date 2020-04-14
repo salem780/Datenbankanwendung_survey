@@ -13,7 +13,9 @@ Author - Lea Buchhold
     <title>Datenbanken Survey</title>
   </head>
   <body>
-  <h1>Hallo XXX</h1>
+  <?php
+  echo "<h1>Hallo ".$_SESSION['username']."</h1>";
+  ?>
   <a href="create_survey.php">Fragebogen erstellen</a> <br> <br>
   <a href="delete_survey.php">Fragebogen löschen</a> <br>
   <a href="copy_survey.php">Bestehenden Fragebogen kopieren</a> <br>
