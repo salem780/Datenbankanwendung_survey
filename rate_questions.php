@@ -1,10 +1,13 @@
+
+<?php session_start();
 //Author: Alissa Templin
-<?php session_start(); ?>
+?>
 
 <?php
 include "db_connection.php";
 $questions= $db->query("Select question.* from survey, question WHERE survey.s_token = question.s_token;");
-
+//$s_title = $_POST["s_title"];
+//$s_title = $db->real_escape_string($s_title);
 
 ?>
 
@@ -22,13 +25,13 @@ $questions= $db->query("Select question.* from survey, question WHERE survey.s_t
 $num_of_questions= $questions->num_rows;
 
 while(($row = $questions->fetch_object()) != false) {
-             //echo "$row->s.s_title <br/>";
              $rows[] = $row;
              }
 ?>
 
 <?php
 
+//echo "$s_title";
 
 if ((isset ($_POST["nextqu"]) == false)  &&
     (isset ($_POST["prevqu"]) ==false)) {
@@ -49,6 +52,8 @@ $_SESSION["aktfrage"] --;
 <h4> Frage <?php echo $_SESSION["aktfrage"]; ?> <h4>
 
 <?php
+
+
 foreach ($rows as $data) {
 echo $data->Text;
 }

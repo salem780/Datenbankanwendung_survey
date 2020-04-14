@@ -1,5 +1,6 @@
-//Author: Alissa Templin
+
 <?php
+//Author:Alissa Templin
 include "db_connection.php";
 $survey_active = $db->query("Select * from survey, activation, student WHERE survey.s_token = activation.s_token AND activation.c_token = student.c_token;");
 ?>
@@ -43,7 +44,7 @@ $survey_active = $db->query("Select * from survey, activation, student WHERE sur
                   <?php echo $data->s_title; ?>
               </td>
               <td>
-                  <input type="button" value="Home" onclick="window.location.href='create_survey.php'" />
+                  <input type="submit" value="Start" onclick="window.location.href='rate_questions.php'" />
               </td>
         </tr>
       <?php
