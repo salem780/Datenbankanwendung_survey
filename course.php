@@ -16,6 +16,8 @@ include "session_surveyor.php";
 <form method="POST" action="new_student.php">
 <label>Einen Kurs anwählen, um die Studenten anzusehen und neue hinzuzufügen.</label> <br><br>
 <?php
+//Löschen der Sessionvariable falls man schon in einem Kurs war
+unset($_SESSION['c_token']);
 //Dynamische Erzeugung von Radiobuttons und Labels nach der Anzahl der bestehenden Kurse
 $courses = $db->query("select c_token from course;");
 while($row = mysqli_fetch_assoc($courses)){

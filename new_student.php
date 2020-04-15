@@ -4,7 +4,7 @@
 include "db_connection.php";
 include "session_surveyor.php";
 
-if (!isset($_POST['course'])){
+if (!isset($_POST['course']) AND !isset($_SESSION['c_token'])){
 //Fehlermeldung
 	exit('Bitte einen Kurs auswählen');
 }
@@ -21,13 +21,19 @@ if (!isset($_POST['course'])){
 <h1>Alle Studenten auf einen Blick</h1>
 
 <?php
-//Abfrage des eingegebenen Kurses, um Matrikelnummern anzuzeigen
- $course = $_POST["course"];
- $c_token = $course[0];
- $_SESSION["c_token"] = $c_token;
+//Falls Postvariable vorhanden, diese in $c_token speichern und Session eröffnen. Falls Session vorhanden, diese in $c_token speichern.
+ if (isset($_POST["course"])) {
+  $course = $_POST["course"];
+  $c_token = $course[0];
+  $_SESSION["c_token"] = $c_token;
+ } else{
+  $course = $_SESSION['c_token'];
+  $c_token = $course;
+ }
+ //Matrikelnummern des Kurses in $mnr speichern
  $mnr = $db->query("select mnr from student where c_token = '".$c_token."';");
 
- echo "<h4>$c_token</h4>";
+ echo $_SESSION["c_token"] . "<br>";
 
 //Ausgeben der Daten
 while($row = mysqli_fetch_assoc($mnr)) {

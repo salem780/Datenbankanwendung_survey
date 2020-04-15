@@ -23,7 +23,7 @@ if ($stmt = $db->prepare('SELECT * FROM Student WHERE mnr = ?')) {
 if ($stmt = $db->prepare('INSERT INTO Student (mnr, student_name, c_token) VALUES (?, ?, ?)')) {
 	$stmt->bind_param('sss', $_POST['mnr'], $_POST['student_name'], $_SESSION['c_token']);
 	$stmt->execute();
-    header("Location: course.php");
+    header("Location: new_student.php");
 } else {
 //Fehlermeldung
 	echo 'Student wurde nicht angelegt';
