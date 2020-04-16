@@ -37,15 +37,17 @@ while($row = mysqli_fetch_assoc($surveys)){
 
 echo "<input type='submit' name='titlesearch', value='Suchen'/>";
 echo "</select></form>";
+$selected_survey= $row['s_title'];
 
 if(isset($_POST["titlesearch"])){
 $selected_survey = $_POST['surveytitles'];
 $_SESSION["surveytitles"] = $selected_survey;
+$selected_survey = $_SESSION["surveytitles"];
 echo $_SESSION["surveytitles"];
 }
 
 
-$s_token = $db->query("select s_token from survey where s_title = '".$_SESSION['surveytitles']."';");
+$s_token = $db->query("select s_token from survey where s_title = '".$selected_survey."';");
 $s_token = mysqli_fetch_assoc($s_token);
 $s_token = $s_token["s_token"];
 
