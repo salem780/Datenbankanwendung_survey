@@ -1,6 +1,6 @@
 <?php
 include_once 'db_connection.php';
-//include 'session_surveyor.php';
+include 'session_surveyor.php';
 include 'processing_rating.php';
 ?>
 
@@ -36,10 +36,12 @@ while($row = mysqli_fetch_assoc($surveys)){
 }
 
 echo "<input type='submit' name='titlesearch', value='Suchen'/>";
+echo "</select></form>";
+
+
 
 $selected_survey = $row['s_title'];
 if(isset($_POST["titlesearch"])){
-
 
 $selected_survey = $_POST['surveytitles'];
 // $_SESSION["surveytitles"] = $selected_survey;
@@ -52,13 +54,9 @@ $s_token = $s_token["s_token"];
 $coursetitles = $db->query("select c_token from activation where  s_token ='".$s_token."' ;");
 
 
-
-
 echo "<form action='processing_rating.php' method='POST'>";
 
-
-
-
+//$selected_course = $row['c_token'];
 echo "<select name='coursetitles'>";
 while($row = mysqli_fetch_assoc($coursetitles)){
   echo "<option name= 'title' value = ".$row['c_token'].">".$row['c_token']."</option>";
