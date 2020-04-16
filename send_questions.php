@@ -5,7 +5,7 @@
 
 include "session_surveyor.php";
 
-//Cross-Site-Scripting verhindern
+//Zufriff durch Eingabe der Datei in der URL verhindern
 if (!isset($_POST["submit_questions"])) {
     echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a><br>";
 	exit("So geht das aber nicht!");
@@ -31,18 +31,18 @@ echo  "<h3>Die Erstellung des Fragebogens war erfolgreich </h3>";
 
 //Ausgeben der eingegebenen Daten
 $s_title_row = mysqli_fetch_assoc($s_title);
-echo "Titel: " . $s_title_row["s_title"] . "<br> <br>";
+echo "Titel: " . htmlentities($s_title_row["s_title"]) . "<br> <br>";
 
-echo  "Kürzel: " . $s_token . "<br> <br>";
+echo  "Kürzel: " . htmlentities($s_token) . "<br> <br>";
 
 echo "Freigeschaltet für folgende Kurse: <br>";
 while($row = mysqli_fetch_assoc($courses)) {
-  echo $row["c_token"] . "<br>";
+  echo htmlentities($row["c_token"]) . "<br>";
  }
 echo "<br>";
 echo "Fragen: <br>";
 while($row = mysqli_fetch_assoc($questions)) {
-  echo "Frage " . $row["id"] . ": " . $row["text"] . "<br>";
+  echo "Frage " . $row["id"] . ": " . htmlentities($row["text"]) . "<br>";
 }
 echo "<br>";
 echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a>"

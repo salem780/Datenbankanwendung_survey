@@ -31,7 +31,7 @@ $courses = $db->query("select c_token from course;");
 <?php
 //Combobox zum Auswählen des zu kopierenden Fragebogens
 while($row = mysqli_fetch_assoc($surveys)){
-echo "<option>".$row["s_title"]."</option>";
+echo "<option>".htmlentities($row["s_title"])."</option>";
 }
 ?>
 </select>
@@ -49,7 +49,7 @@ echo "<option>".$row["s_title"]."</option>";
 <?php
 //Dynamische Erzeugung von Checkboxen und Labels nach der Anzahl der bestehenden Kurse
 while($row = mysqli_fetch_assoc($courses)){
-echo "<label><input type='checkbox' name='course[]' value=".$row['c_token'].">".$row['c_token']."</label> <br>";
+echo "<label><input type='checkbox' name='course[]' value=".$row['c_token'].">".htmlentities($row['c_token'])."</label> <br>";
 }
 ?> <br>
 <input type="submit" value="Fragebogen kopieren" name="submit_copy">
