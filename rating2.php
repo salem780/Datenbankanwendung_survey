@@ -1,40 +1,31 @@
+<?php
+//Author - Salina Moser
+//Formular, um Daten um die Auswertung zu sehen
+
+include "session_surveyor.php";
+include "db_connection.php";
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        .grid-container {
-            display: grid;
-            grid-template-columns: auto ;
-            background-color: #2196F3;
-            padding: 10px;
-        }
-
-        .grid-item {
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0);
-            padding: 20px;
-            font-size: 15px;
-            text-align: left;
-        }
-    </style>
+<h1>Ergebnisauswertung</h1>
 </head>
 <body>
+<?php
+//session variable
 
-<h1>Ergebnisauswertung</h1>
+$username = $_SESSION["username"];
+echo $_SESSION['username'];
+
+// Dropdown menü, alle Fragebögen auslesen, die ein User erstellt hat
+
+$surveys = $db->query("select distinct s.s_title from activation a, survey s where s.s_token = a.s_token AND s.username = '$username';");
+
 
 <div class="grid-container">
     <div class="grid-item">
 
-        <form method="POST">
-
-
-            <form>
-
-                <select name="surveytitles">
-                    <option name= "Umfragetitel1">Eintrag1</option>
-                    <option value= "Umfragetitel2">Eintrag2</option>
-                </select>
-            </form>
 
 
 

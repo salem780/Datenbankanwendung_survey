@@ -1,27 +1,13 @@
 <?php
 include_once 'db_connection.php';
-include 'session_surveyor.php';
+//include 'session_surveyor.php';
+include 'processing_rating.php';
 ?>
+
 
  <!DOCTYPE html>
  <html>
  <head>
-     <style>
-         .grid-container {
-             display: grid;
-             grid-template-columns: auto ;
-             background-color: #2196F3;
-             padding: 10px;
-         }
-
-         .grid-item {
-             background-color: rgba(255, 255, 255, 0.8);
-             border: 1px solid rgba(0, 0, 0, 0);
-             padding: 20px;
-             font-size: 15px;
-             text-align: left;
-         }
-     </style>
  </head>
  <body>
  <h1>Ergebnisauswertung</h1>
@@ -30,60 +16,58 @@ include 'session_surveyor.php';
 
 
 <?php
-//session variable
+
 
 $username = $_SESSION["username"];
 echo $_SESSION['username'];
+
+
 
 // Dropdown menü, alle Fragebögen auslesen, die ein User erstellt hat
 
 $surveys = $db->query("select distinct s.s_title from activation a, survey s where s.s_token = a.s_token AND s.username = '$username';");
 
-//Combobox zur Kursauswahl
-echo "<form method='POST'>";
-echo "<select name='surveytitles'>";
+//Dropdown zur Kursauswahl
+echo "<form action='rating.php' method='POST'>";
+echo "<select name='surveytitles' value = 'test'>";
+//echo "<option selected = 'selected' name= 'title' value = ''></option>";
 while($row = mysqli_fetch_assoc($surveys)){
-  echo "<option>".$row["s_title"]."</option>";
-
+  echo "<option name= 'title' value = ".$row['s_title'].">".$row['s_title']."</option>";
 }
 
 echo "<input type='submit' name='titlesearch', value='Suchen'/>";
-echo "</select></form>";
 
+$selected_survey = $row['s_title'];
 if(isset($_POST["titlesearch"])){
 
-$selected_title = $_POST['surveytitles'];
-echo $selected_title;
 
+$selected_survey = $_POST['surveytitles'];
+// $_SESSION["surveytitles"] = $selected_survey;
+}
 
-
-$s_token = $db->query("select s_token from survey where s_title = '".$selected_title."';");
+$s_token = $db->query("select s_token from survey where s_title = '".$selected_survey."';");
 $s_token = mysqli_fetch_assoc($s_token);
 $s_token = $s_token["s_token"];
 
-$coursetitles = $db->query("select c_name from course c, activation a where c.c_token  = a.c_token AND
-                            a.s_token ='".$s_token."' ;");
-}
-echo "<form method='POST'>";
-echo "<select name ='coursetitles'>";
-while ($row = mysqli_fetch_assoc($coursetitles)){
-echo "<option>".$row["c_name"]."<option>";
+$coursetitles = $db->query("select c_token from activation where  s_token ='".$s_token."' ;");
+
+
+
+
+echo "<form action='processing_rating.php' method='POST'>";
+
+
+
+
+echo "<select name='coursetitles'>";
+while($row = mysqli_fetch_assoc($coursetitles)){
+  echo "<option name= 'title' value = ".$row['c_token'].">".$row['c_token']."</option>";
+
 }
 echo "<input type='submit' name='coursesearch', value='Suchen'/>";
 echo "</select></form>";
 
-if(isset($_POST["coursesearch"])){
-
-$selected_course = $_POST['coursetitles'];
-echo $selected_course;
-}
-
-echo "</select></form>";
 ?>
-
-
-
-
              <form>
 
                  <table id="resulttable" , border="1" , width="100%">
@@ -129,4 +113,4 @@ echo "</select></form>";
 
 
  </body>
- </html>*/
+ </html>
