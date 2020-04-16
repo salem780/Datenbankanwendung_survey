@@ -25,7 +25,7 @@ if ($number_of_rows > 0){
   return true;
   }
 }
-
+/*
 //Author - Peter Metzger
 //Bewertung für Frage eintragen
 function inject_rating($_SESSION['mnr'], $_SESSION['aktfrage'], $s_token, $a_value){
@@ -51,6 +51,6 @@ function set_status($_SESSION['mnr'], $s_token){
         $stmt = $db->prepare('UPDATE answered SET status = 1 WHERE mnr = ? AND s_token = ?'))
 	    $stmt->bind_param('ss', $_SESSION['mnr'], $s_token);
 	    $stmt->execute();
-}
+}*/
 
 ?>
