@@ -5,7 +5,7 @@
 
 include "session_surveyor.php";
 
-//Cross-Site-Scripting verhindern
+//Zufriff durch Eingabe der Datei in der URL verhindern
 if (!isset($_POST["send_added_questions"])) {
     echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a><br>";
 	exit("So geht das aber nicht!");
@@ -31,7 +31,7 @@ echo "Diese Fragen wurden erfolgreich hinzugefügt: <br> <br>";
 $question_number = 1;
 $added_questions = $db->query("select text from question where s_token = '".$_POST["s_token"]."' and id > '".$max_id."';");
 while($row = mysqli_fetch_assoc($added_questions)){
-echo "Frage ". $question_number . ": " . $row["text"]."<br>";
+echo "Frage ". $question_number . ": ".htmlentities($row["text"])."<br>";
 $question_number++;
 }
 

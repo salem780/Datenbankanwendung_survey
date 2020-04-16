@@ -4,7 +4,7 @@
 
 include "session_surveyor.php";
 
-//Cross-Site-Scripting verhindern
+//Zufriff durch Eingabe der Datei in der URL verhindern
 if (!isset($_POST["submit_delete_questions"])) {
     echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a><br>";
 	exit("So geht das aber nicht!");

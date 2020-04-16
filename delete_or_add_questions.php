@@ -27,7 +27,7 @@ Fragebogen auswählen:
 <?php
 //Combobox zum Auswählen des zu kopierenden Fragebogens
 while($row = mysqli_fetch_assoc($surveys)){
-echo "<option>".$row["s_title"]."</option>";
+echo "<option>".htmlentities($row["s_title"])."</option>";
 }
 ?>
 </select> <br> <br>

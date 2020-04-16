@@ -6,7 +6,7 @@
 
 include "session_surveyor.php";
 
-//Cross-Site-Scripting verhindern
+//Zufriff durch Eingabe der Datei in der URL verhindern
 if (!isset($_POST["submit_delete_questions"]) AND !isset($_POST["submit_add_questions"])) {
     echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a><br>";
 	exit("So geht das aber nicht!");
@@ -34,7 +34,7 @@ echo "<form method='POST' action='delete_questions.php'>";
 //Dynamische Erzeugung von Checkboxen und Labels nach Anzahl der Fragen
 $question_number = 1;
 while($row = mysqli_fetch_assoc($questions)){
-echo "<label><input type='checkbox' name='question[]' value=".$row["id"].">"."Frage ".$question_number.": ".$row["text"]."</label> <br>";
+echo "<label><input type='checkbox' name='question[]' value=".$row["id"].">"."Frage ".$question_number.": ".htmlentities($row["text"])."</label> <br>";
 $question_number++;
  }
  //Verstecktes Inputfeld, um Umfragenkürzel mit zu übergeben

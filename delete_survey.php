@@ -14,7 +14,7 @@ echo "<h1> Fragebogen löschen </h1>";
 echo "<form method='POST'>";
 echo "<select name='surveys'>";
 while($row = mysqli_fetch_assoc($surveys)){
-echo "<option>".$row["s_title"]."</option>";
+echo "<option>".htmlentities($row["s_title"])."</option>";
 }
 echo "<input type='submit' value='Fragebogen löschen' name='submit_delete'>";
 echo "</select></form>";

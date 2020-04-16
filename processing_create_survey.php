@@ -5,7 +5,7 @@
 
 include "session_surveyor.php";
 
-//Cross-Site-Scripting verhindern
+//Zufriff durch Eingabe der Datei in der URL verhindern
 if (!isset($_POST["submit_survey"])) {
     echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a><br>";
 	exit("So geht das aber nicht!");
@@ -14,14 +14,11 @@ if (!isset($_POST["submit_survey"])) {
 include "db_connection.php";
 include "functions.php";
 
-//Eingaben der Inputfelder auslesen
-$s_title = $_POST["s_title"];
-$s_token = $_POST["s_token"];
-$number_of_questions = $_POST["number_of_questions"];
+//Eingaben der Inputfelder auslesen und vor Injection schützen
+$s_title = $db->real_escape_string($_POST["s_title"]);
+$s_token = $db->real_escape_string($_POST["s_token"]);
+$number_of_questions = $db->real_escape_string($_POST["number_of_questions"]);
 
-//vor Injection schützen
-$s_title = $db->real_escape_string($s_title);
-$s_token = $db->real_escape_string($s_token);
 
 //Prüfen, ob Titel bereits vergeben ist, indem eigene Funktion aufgerufen wird
 if(!check_s_title($s_title, $db)){
