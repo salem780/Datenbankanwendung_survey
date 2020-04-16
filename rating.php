@@ -1,7 +1,7 @@
 <?php
 include_once 'db_connection.php';
 include 'session_surveyor.php';
-include 'processing_rating.php';
+
 ?>
 
 
@@ -27,7 +27,7 @@ echo $_SESSION['username'];
 
 $surveys = $db->query("select distinct s.s_title from activation a, survey s where s.s_token = a.s_token AND s.username = '$username';");
 
-//Dropdown zur Kursauswahl
+//Dropdown zur titelauswahl
 echo "<form action='rating.php' method='POST'>";
 echo "<select name='surveytitles' value = 'test'>";
 //echo "<option selected = 'selected' name= 'title' value = ''></option>";
@@ -38,25 +38,21 @@ while($row = mysqli_fetch_assoc($surveys)){
 echo "<input type='submit' name='titlesearch', value='Suchen'/>";
 echo "</select></form>";
 
-
-
-$selected_survey = $row['s_title'];
 if(isset($_POST["titlesearch"])){
-
 $selected_survey = $_POST['surveytitles'];
-// $_SESSION["surveytitles"] = $selected_survey;
+$_SESSION["surveytitles"] = $selected_survey;
+echo $_SESSION["surveytitles"];
 }
 
-$s_token = $db->query("select s_token from survey where s_title = '".$selected_survey."';");
+
+$s_token = $db->query("select s_token from survey where s_title = '".$_SESSION['surveytitles']."';");
 $s_token = mysqli_fetch_assoc($s_token);
 $s_token = $s_token["s_token"];
 
 $coursetitles = $db->query("select c_token from activation where  s_token ='".$s_token."' ;");
 
 
-echo "<form action='processing_rating.php' method='POST'>";
-
-//$selected_course = $row['c_token'];
+echo "<form action='rating.php' method='POST'>";
 echo "<select name='coursetitles'>";
 while($row = mysqli_fetch_assoc($coursetitles)){
   echo "<option name= 'title' value = ".$row['c_token'].">".$row['c_token']."</option>";
@@ -64,6 +60,16 @@ while($row = mysqli_fetch_assoc($coursetitles)){
 }
 echo "<input type='submit' name='coursesearch', value='Suchen'/>";
 echo "</select></form>";
+//$selected_course = $row['c_token'];
+
+if(isset($_POST["coursesearch"])){
+
+$selected_course = $_POST['coursetitles'];
+$_SESSION["coursetitles"] = $selected_course;
+echo $_SESSION["coursetitles"];
+echo $_SESSION["surveytitles"];
+
+}
 
 ?>
              <form>
