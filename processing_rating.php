@@ -1,25 +1,24 @@
 <?php
-include 'question_class.php';
+
+include 'includes/question_class.php';
 
 ?>
 
 <!DOCTYPE html>
-<html lang=2en dir="ltr">
+<html>
 <head>
-<meta charset = "utf-8">
 <title></title>
 </head>
 <body>
 
-
-
 <?php
+$question = new Question();
+echo $question->setId();
 
-$question1 = new Question();
-$question1->setId("123");
-echo $question1->id;
+
+
+
 ?>
-
 
 </body>
 </html>
