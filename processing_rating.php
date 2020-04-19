@@ -13,7 +13,7 @@ include 'includes/question_class.php';
 
 <?php
 $question1 = new Question();
- $question1->setId("i can die in peace now");
+ $question1->setId("i can die in peace now.");
 echo $question1->id;
 
 
