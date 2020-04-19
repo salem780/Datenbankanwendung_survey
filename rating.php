@@ -71,7 +71,7 @@ while($row = mysqli_fetch_assoc($coursetitles)){
 echo "<input type='submit' name='coursesearch', value='Suchen'/>";
 echo "</select></form>";
 
-
+$questions = $db->query("select id from rating where s_token ='".$_SESSION['s_token']."' ;");
 }
 $selected_course = $row['c_token'];
 
@@ -83,39 +83,40 @@ echo"<br>
 <br>";
 echo "<label for='text'><b>Umfragetitel<b>: " .$_SESSION["surveytitles"]. "</label> <br>";
 echo"<br>";
-echo "<label for='text'><b>Umfragetitel<b>: " .$_SESSION["coursetitles"]. "</label> <br>";
+echo "<label for='text'><b>Befragter Kurs<b>: " .$_SESSION["coursetitles"]. "</label> <br>";
+echo "<label for='text'><b>Umfragekürzel<b>: " .$_SESSION['s_token']. "</label> <br>";
 
+$questions = $db->query("select id, text from question where s_token ='".$_SESSION['s_token']."' ;");
+
+echo "<form action='rating.php' method='POST'>";
+echo "<table id='resulttable' , border='1' , width='100%'>";
+echo "<h2>Fragebogenauswertung</h2>";
+echo "<tr>";
+echo "<th>Id</th>";
+echo "<th>Frage</th>";
+echo "<th>Durchschnitt</th>";
+echo "<th>Max</th>";
+echo "<th>Min</th>";
+echo "<th>Standardabweichung</th>";
+echo "</tr>";
+
+
+while($row = mysqli_fetch_assoc($questions)){
+ echo "<tr>";
+echo "<td>".$row['id']."</td>";
+
+echo "<td>".$row['text']."</td>";
+echo "</tr>";
 }
+
+echo "</table></form>";}
+
 
 ?>
 
-             <form>
-
-                 <table id="resulttable" , border="1" , width="100%">
-                     <h2>Fragebogenauswertung</h2>
-
-                     <tr>
-                         <th>Frage</th>
-                         <th>Durchschnitt</th>
-                         <th>Max</th>
-                         <th>Min</th>
-                         <th>Standardabweichung</th>
-
-                     </tr>
-
-                     <tr>
-                         <td>Frage 1</td>
-                         <td>50</td>
-                         <td>100</td>
-                         <td>20</td>
-                         <td>4,5</td>
-
-                     </tr>
-                     <tr>
 
 
-                 </table>
-             </form>
+
 
 
              <form>
