@@ -100,7 +100,6 @@ echo "<th>Min</th>";
 echo "<th>Standardabweichung</th>";
 echo "</tr>";
 
-
 while($row = mysqli_fetch_assoc($questions)){
  echo "<tr>";
 echo "<td>".$row['id']."</td>";
