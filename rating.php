@@ -1,6 +1,8 @@
 <?php
 include_once 'db_connection.php';
 include 'session_surveyor.php';
+//include 'functions.php';
+//include 'question_class.php';
 
 ?>
 
@@ -20,6 +22,8 @@ include 'session_surveyor.php';
 
 $username = $_SESSION["username"];
 echo $_SESSION['username'];
+//$coursetitles= "";
+//$s_token="";
 
 
 
@@ -44,36 +48,47 @@ $selected_survey = $_POST['surveytitles'];
 $_SESSION["surveytitles"] = $selected_survey;
 $selected_survey = $_SESSION["surveytitles"];
 echo $_SESSION["surveytitles"];
-}
+
+
 
 
 $s_token = $db->query("select s_token from survey where s_title = '".$selected_survey."';");
 $s_token = mysqli_fetch_assoc($s_token);
 $s_token = $s_token["s_token"];
+$_SESSION['s_token'] = $s_token;
 
-$coursetitles = $db->query("select c_token from activation where  s_token ='".$s_token."' ;");
+
+$coursetitles = $db->query("select c_token from activation where  s_token ='".$_SESSION['s_token']."' ;");
+
 
 
 echo "<form action='rating.php' method='POST'>";
 echo "<select name='coursetitles'>";
 while($row = mysqli_fetch_assoc($coursetitles)){
-  echo "<option name= 'title' value = ".$row['c_token'].">".$row['c_token']."</option>";
-
+ echo "<option name= 'title' value = ".$row['c_token'].">".$row['c_token']."</option>";
+//echo "<label><input type='checkbox' name='coursetitles' value=".$row['c_token'].">".htmlentities($row['c_token'])."</label> <br>";
 }
 echo "<input type='submit' name='coursesearch', value='Suchen'/>";
 echo "</select></form>";
-//$selected_course = $row['c_token'];
+
+
+}
+$selected_course = $row['c_token'];
 
 if(isset($_POST["coursesearch"])){
 
 $selected_course = $_POST['coursetitles'];
 $_SESSION["coursetitles"] = $selected_course;
-echo $_SESSION["coursetitles"];
-echo $_SESSION["surveytitles"];
+echo"<br>
+<br>";
+echo "<label for='text'><b>Umfragetitel<b>: " .$_SESSION["surveytitles"]. "</label> <br>";
+echo"<br>";
+echo "<label for='text'><b>Umfragetitel<b>: " .$_SESSION["coursetitles"]. "</label> <br>";
 
 }
 
 ?>
+
              <form>
 
                  <table id="resulttable" , border="1" , width="100%">
