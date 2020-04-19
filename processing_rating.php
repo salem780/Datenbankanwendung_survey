@@ -11,11 +11,14 @@ include 'includes/question_class.php';
 </head>
 <body>
 
+<?php
+$question = new Question();
+echo $question->setId();
 
 
 
 
-
+?>
 
 </body>
 </html>
