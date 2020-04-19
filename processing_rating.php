@@ -17,8 +17,5 @@ include 'includes/question_class.php';
 
 
 
-
-
-
 </body>
 </html>
