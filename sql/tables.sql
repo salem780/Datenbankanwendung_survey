@@ -33,7 +33,7 @@ CREATE TABLE Rating (
     s_token CHAR(4),
     FOREIGN KEY (MNR) REFERENCES Student (MNR) on delete cascade on update cascade,
     FOREIGN KEY (ID) REFERENCES Question (ID) on delete cascade on update cascade,
-    FOREIGN KEY (s_token) REFERENCES Question (s_token) on delete cascade on update cascade,
+    FOREIGN KEY (s_token) REFERENCES survey (s_token) on delete cascade on update cascade,
     a_value INT CHECK (a_value >=1 AND a_value <=5),
     CONSTRAINT PK_Rating PRIMARY KEY (MNR, ID,s_token)
 );
