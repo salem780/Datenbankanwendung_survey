@@ -2,7 +2,10 @@
 <?php
 //Author:Alissa Templin
 include "db_connection.php";
-$survey_active = $db->query("Select * from survey, activation, student WHERE survey.s_token = activation.s_token AND activation.c_token = student.c_token;");
+include 'session_student.php';
+include 'functions.php';
+$mnr = $_SESSION['mnr'];
+//$survey_active = $db->query("Select * from answered, survey WHERE answered.s_token = survey.s_token AND answered.status = '0' AND answered.mnr = $mnr;");
 ?>
 
 <!DOCTYPE html>
@@ -13,9 +16,16 @@ $survey_active = $db->query("Select * from survey, activation, student WHERE sur
     <title>Fragebogen</title>
   </head>
   <body>
+<form method="POST" action="rate_questions.php">
    <?php
+   echo "<h1>Hello " . $mnr . "</h1>";
+             if(check_mnr($db, $mnr)) {
+             echo "<label>Einen Fragenbogen auswählen, der beantwortet werden soll:</label> <br><br>";
+             while($row = mysqli_fetch_assoc($_SESSION['survey_active'])){
+             echo "<label><input type='radio' name='survey' value=".$row['s_token'].">".$row['s_title']."</label> <br>";
+             }
 
-             while(($row = $survey_active->fetch_object()) != false) {
+/*             while(($row = $_SESSION['survey_active']->fetch_object()) != false) {
              //echo "$row->s.s_title <br/>";
              $rows[] = $row;
              }
@@ -52,7 +62,17 @@ $survey_active = $db->query("Select * from survey, activation, student WHERE sur
       ?>
         </tbody>
       </table>
+      */
+      } else{
+      echo "Aktuell keine Fragebögen vorhanden!";}
+      ?>
 
+<br>
+<button type="submit"
+ <?php if (!check_mnr($db, $mnr)) echo "hidden"; ?>
+ name="Submit">Beantworten</button></br>
+</form>
 
+<a href="logout.php">ausloggen</a>
   </body>
 </html>
