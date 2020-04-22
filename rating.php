@@ -33,15 +33,24 @@ $surveys = $db->query("select distinct s.s_title from activation a, survey s whe
 
 //Dropdown zur titelauswahl
 echo "<form action='rating.php' method='POST'>";
-echo "<select name='surveytitles' value = 'test'>";
-//echo "<option selected = 'selected' name= 'title' value = ''></option>";
+echo "<select name='surveytitles' value = 'test' required>";
+
+//$selected_survey= $row['s_title'];
 while($row = mysqli_fetch_assoc($surveys)){
   echo "<option name= 'title' value = ".$row['s_title'].">".$row['s_title']."</option>";
-}
 
-echo "<input type='submit' name='titlesearch', value='Suchen'/>";
+
+//if ($row['s_title']==""){
+   //  echo $selected_survey= $row['keine Umfrage'];
+     //}
+}
+echo "<input type='submit' name='titlesearch' value='Suchen'/>";
 echo "</select></form>";
-$selected_survey= $row['s_title'];
+
+
+
+
+//if die sessionvariable null dann header auf dieselbe seite
 
 if(isset($_POST["titlesearch"])){
 $selected_survey = $_POST['surveytitles'];
