@@ -28,7 +28,7 @@ c_name VARCHAR (32) NOT NULL
 );
 
 CREATE TABLE Rating (
-    MNR CHAR(4),
+    MNR CHAR(8),
     ID INT,
     s_token CHAR(4),
     FOREIGN KEY (MNR) REFERENCES Student (MNR) on delete cascade on update cascade,

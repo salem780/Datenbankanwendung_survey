@@ -138,7 +138,7 @@ echo "</table></form>";}
              </form>
 
      </div>
-
+<a href='surveyor_logged.php'> Zurück zur Startseite</a>
  </div>
 
 
