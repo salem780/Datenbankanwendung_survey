@@ -53,6 +53,13 @@ function set_status($_SESSION['mnr'], $s_token){
 	    $stmt->execute();
 }*/
 
-
+function check_mnr($db, $mnr){
+$_SESSION['survey_active'] = $db->query("Select * from answered, survey WHERE answered.s_token = survey.s_token AND answered.status = '0' AND answered.mnr = $mnr;");
+$num_of_rows = $_SESSION['survey_active']->num_rows;
+if ($num_of_rows > 0) {
+return true;
+}else{
+return false;}
+}
 
 ?>
