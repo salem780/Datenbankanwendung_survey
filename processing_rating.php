@@ -12,10 +12,8 @@ include 'includes/question_class.php';
 <body>
 
 <?php
-$question1 = new Question();
- $question1->setId("I can die in peace now.");
-echo $question1->id;
 
+echo sele
 
 ?>
 
