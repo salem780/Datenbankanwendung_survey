@@ -19,7 +19,7 @@ class Auswertung
 public $s_token;
 private $c_token;
 private $id;
-private $kommentare;
+private $comments;
 
 //Methods
 public function setSurveytoken ($s_token){
@@ -34,17 +34,30 @@ echo $this->c_token;
 
 }
 
-public function lade_kommentare ($db){
-$sql = "select comment from answered;";
+public function get_Comments ($db){
+//$this->comments[] = array();
+$sql = "select comment from answered a, student s WHERE a.mnr=s.mnr AND status = '1' AND c_token = '" . $this->c_token . "' AND a.s_token = '" . $this->s_token . "' ;";
 $result = mysqli_query($db,$sql);
 $resultCheck = mysqli_num_rows($result);
 
-if ($resultCheck > 0){
+
 while ($row = mysqli_fetch_assoc($result)){
-echo $row['comment'] . "<br>";
+$this->comments[] = $row['comment'];
 }
 }
+
+public function kommentarzusammenfassung ()
+{
+$commentlist = "";
+for ($i = 0; $i < sizeof ($this->comments); $i++)
+{
+$commentlist.= "<p>" . $this->comments[$i] . "</p> <p> </p>";
 }
+return $commentlist;
+}
+
+
+
 }
 
 
