@@ -1,7 +1,7 @@
 <?php
 include_once 'db_connection.php';
 include 'session_surveyor.php';
-
+include_once 'includes/question_class.php';
 //include 'functions.php';
 
 
@@ -86,7 +86,7 @@ else { echo "Bitte Titel auswählen";}
 $selected_course = $row['c_token'];
 
 if(isset($_POST["coursesearch"])){
-include 'includes/question_class.php';
+
 $selected_course = $_POST['coursetoken'];
 $_SESSION["coursetoken"] = $selected_course;
 echo"<br>
@@ -96,11 +96,8 @@ echo"<br>";
 echo "<label for='text'><b>Befragter Kurs<b>: " .$_SESSION["coursetoken"]. "</label> <br>";
 echo "<label for='text'><b>Umfragekürzel<b>: " .$_SESSION['s_token']. "</label> <br>";
 
-include_once 'includes/question_class.php';
-$auswertung1 = new Auswertung ();
-$auswertung1->setSurveytoken($_SESSION['s_token']);
-$auswertung1->setCoursetoken($_SESSION["coursetoken"]);
-$auswertung1->lade_kommentare($db);
+
+
 
 $questions = $db->query("select id, text from question where s_token ='".$_SESSION['s_token']."' ;");
 
@@ -115,7 +112,11 @@ echo "<th>Max</th>";
 echo "<th>Min</th>";
 echo "<th>Standardabweichung</th>";
 echo "</tr>";
-
+$auswertung1 = new Auswertung ();
+$auswertung1->setSurveytoken($_SESSION['s_token']);
+$auswertung1->setCoursetoken($_SESSION["coursetoken"]);
+$auswertung1->get_Comments($db);
+echo $auswertung1->kommentarzusammenfassung();
 
 while($row = mysqli_fetch_assoc($questions)){
 
