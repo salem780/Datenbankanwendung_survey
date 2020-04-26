@@ -50,7 +50,7 @@ echo "<input type='submit' name='titlesearch' value='Suchen'/>";
 //if die sessionvariable null dann header auf dieselbe seite
 
 if(isset($_POST["titlesearch"])){
-include 'includes/question_class.php';
+
 $selected_survey = $_POST['surveytitles'];
 $_SESSION["surveytitles"] = $selected_survey;
 $selected_survey = $_SESSION["surveytitles"];
@@ -96,6 +96,12 @@ echo"<br>";
 echo "<label for='text'><b>Befragter Kurs<b>: " .$_SESSION["coursetoken"]. "</label> <br>";
 echo "<label for='text'><b>Umfragekürzel<b>: " .$_SESSION['s_token']. "</label> <br>";
 
+include_once 'includes/question_class.php';
+$auswertung1 = new Auswertung ();
+$auswertung1->setSurveytoken($_SESSION['s_token']);
+$auswertung1->setCoursetoken($_SESSION["coursetoken"]);
+$auswertung1->lade_kommentare($db);
+
 $questions = $db->query("select id, text from question where s_token ='".$_SESSION['s_token']."' ;");
 
 echo "<form action='rating.php' method='POST'>";
@@ -115,6 +121,7 @@ while($row = mysqli_fetch_assoc($questions)){
 
 
 
+
 echo "<td>".$row['id']."</td>";
 echo "<td>".$row['text']."</td>";
 echo "</tr>";
@@ -122,12 +129,11 @@ echo "</tr>";
 
 }
 
-echo "</table></form>";}
+echo "</table></form>";
 
-$auswertung1 = new Auswertung ();
-$auswertung1->setSurveytoken($_SESSION['s_token']);
-$auswertung1->setCoursetoken($_SESSION["coursetoken"]);
-$auswertung1->lade_kommentare($db);
+
+}
+
 
 
 ?>

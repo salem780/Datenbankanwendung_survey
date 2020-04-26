@@ -35,7 +35,7 @@ echo $this->c_token;
 }
 
 public function lade_kommentare ($db){
-$sql = "select comment from answered;";
+$sql = "select comment from answered a, student s, rating r WHERE a.mnr=s.mnr AND a.mnr = r.mnr AND c_token = '" . $this->c_token . "' AND r.s_token = '" . $this->s_token . "' ;";
 $result = mysqli_query($db,$sql);
 $resultCheck = mysqli_num_rows($result);
 
