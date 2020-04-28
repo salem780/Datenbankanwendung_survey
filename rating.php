@@ -28,7 +28,7 @@ echo $_SESSION['username'];
 
 // Dropdown menü, alle Fragebögen auslesen, die ein User erstellt hat
 
-$surveys = $db->query("select distinct s.s_title from activation a, survey s where s.s_token = a.s_token AND s.username = '$username';");
+$surveys = $db->query("select distinct s.s_title from activation a, survey s, rating r where  s.s_token = a.s_token AND s.username = '$username' AND r.s_token = a.s_token ;");
 
 //Dropdown zur titelauswahl
 
@@ -100,6 +100,8 @@ echo "<label for='text'><b>Umfragekürzel<b>: " .$_SESSION['s_token']. "</label>
 
 
 //$questions = $db->query("select id, text from question where s_token ='".$_SESSION['s_token']."' ;");
+$tmp = explode('/', $_POST["coursetoken"]);
+$auswertung = new Auswertung($_SESSION['s_token'],$tmp[0]);
 
 echo "<form action='rating.php' method='POST'>";
 echo "<table id='resulttable' , border='1' , width='100%'>";
@@ -112,28 +114,30 @@ echo "<th>Max</th>";
 echo "<th>Min</th>";
 echo "<th>Standardabweichung</th>";
 echo "</tr>";
-$db = new mysqli("localhost", "root", "", "survey");
-$result = mysqli_query ($db, "select id, text from questions_token ='".$_SESSION['s_token']."' order by id");
+
+//$db = new mysqli("localhost", "root", "", "survey");
+$result = mysqli_query ($db, "select id, text from question WHERE s_token ='".$_SESSION['s_token']."';");
 
 while ($row = mysqli_fetch_assoc($result))
 {
-echo '<tr> <td> '. $row["id"] . '. ' . $row["text"] . '</td>';
-$ferg = $erg->erg_fuer_frage($row["fragenummer"]-1);
+echo '<tr> <td> '. $row["id"] . '</td>';
+
+echo '<td> '. $row["text"] . '</td>';
+$ferg = $auswertung->erg_fuer_frage($row["id"]-1);
 echo '<td>' . $ferg->durchschnitt . '</td>';
 echo '<td>' . $ferg->minimum . '</td>';
-echo '<td>' . $ferg->maximum . '</td>';
 echo '</tr>';
 }
 
 echo "</tr>";
 
 
-}
+
 
 echo "</table></form>";
 
-
-
+echo $auswertung->commentlist();
+}
 
 
 
