@@ -126,6 +126,8 @@ echo '<td> '. $row["text"] . '</td>';
 $ferg = $auswertung->erg_fuer_frage($row["id"]-1);
 echo '<td>' . $ferg->durchschnitt . '</td>';
 echo '<td>' . $ferg->minimum . '</td>';
+echo '<td>' . $ferg->maximum . '</td>';
+echo '<td>' . $ferg->stdabweichung . '</td>';
 echo '</tr>';
 }
 
