@@ -14,7 +14,6 @@ public $durchschnitt;
 public $minimum;
 public $maximum;
 public $stdabweichung;
-
 }
 
 class Auswertung
@@ -43,17 +42,18 @@ $this->lade_punkteergebnisse($db);
 protected function berechne_stdabw($db, $id, $durchschnitt, $anzantworten){
 $sql = "select a_value from rating r, answered a, student s WHERE r.mnr = a.mnr AND a.mnr = s.mnr AND c_token = '" . $this->c_token . "'AND a.s_token = '" . $this->s_token . "' and id = '" . $id . "' ;";
 $result = mysqli_query ($db, $sql);
-$quadrierteabweichung = 0;
+$varianz = 0;
 while ($row = mysqli_fetch_assoc($result)){
 
-$quadrierteabweichung = ($row["a_value"] - $durchschnitt) * ($row["a_value"] - $durchschnitt);
-$quadrierteabweichung =+ $quadrierteabweichung;
+$varianz +=( ($row["a_value"] - $durchschnitt) * ($row["a_value"] - $durchschnitt));
+
+$standardabweichung= sqrt($varianz/ $anzantworten);
 
 }
-
-return $quadrierteabweichung / $anzantworten;
-
+return $standardabweichung;
 }
+
+
 
 public function get_Comments ($db){
 $this->comments = array();
