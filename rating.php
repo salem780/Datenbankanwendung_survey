@@ -113,7 +113,7 @@ echo "<th>Durchschnitt</th>";
 echo "<th>Max</th>";
 echo "<th>Min</th>";
 echo "<th>Standardabweichung</th>";
-echo "<th>Standardabweichungkirchberg</th>";
+
 echo "</tr>";
 
 //$db = new mysqli("localhost", "root", "", "survey");
