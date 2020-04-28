@@ -29,12 +29,13 @@ c_name VARCHAR (32) NOT NULL
 
 CREATE TABLE Rating (
     MNR CHAR(8),
-    ID INT,
+    ID INT ,
     s_token CHAR(4),
+      a_value INT,
     FOREIGN KEY (MNR) REFERENCES Student (MNR) on delete cascade on update cascade,
-    FOREIGN KEY (ID) REFERENCES Question (ID) on delete cascade on update cascade,
-    FOREIGN KEY (s_token) REFERENCES survey (s_token) on delete cascade on update cascade,
-    a_value INT CHECK (a_value >=1 AND a_value <=5),
+    FOREIGN KEY (ID, s_token) REFERENCES Question (ID, s_token) on delete cascade on update cascade,
+
+
     CONSTRAINT PK_Rating PRIMARY KEY (MNR, ID,s_token)
 );
 

@@ -22,6 +22,7 @@ Author - Lea Buchhold
   <a href="delete_or_add_questions.php">Fragen löschen oder hinzufügen</a> <br>
   <a href="rating.php">Fragebogen auswerten</a><br><br>
   <a href="new_course.php">Neuen Kurs/Studenten erstellen</a> <br> <br>
+  <a href="student_login.php">Studentenlogin</a><br><br>
   <a href="logout.php">ausloggen</a>
   </body>
 </html>
