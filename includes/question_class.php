@@ -99,7 +99,7 @@ $this->ergebnisse[]= $frageerg;
 
 
 }
-
+/*
 public function erg_fuer_frage ($id)
 { return $this->ergebnisse[$id];
 
