@@ -97,7 +97,7 @@ $this->ergebnisse[]= $frageerg;
 
 }
 
-
+/*
 }
 
 public function erg_fuer_frage ($id)
