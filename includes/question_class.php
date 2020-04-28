@@ -40,6 +40,21 @@ $this->lade_punkteergebnisse($db);
 //}
 
 
+protected function berechne_stdabw($db, $id, $durchschnitt, $anzantworten){
+$sql = "select a_value from rating r, answered a, student s WHERE r.mnr = a.mnr AND a.mnr = s.mnr AND c_token = '" . $this->c_token . "'AND a.s_token = '" . $this->s_token . "' and id = '" . $id . "' ;";
+$result = mysqli_query ($db, $sql);
+$quadrierteabweichung = 0;
+while ($row = mysqli_fetch_assoc($result)){
+
+$quadrierteabweichung = ($row["a_value"] - $durchschnitt) * ($row["a_value"] - $durchschnitt);
+$quadrierteabweichung =+ $quadrierteabweichung;
+
+}
+
+return $quadrierteabweichung / $anzantworten;
+
+}
+
 public function get_Comments ($db){
 $this->comments = array();
 $sql = "select comment from answered a, student s WHERE a.mnr=s.mnr AND status = '1' AND c_token = '" . $this->c_token . "' AND a.s_token = '" . $this->s_token . "' ;";
@@ -64,13 +79,9 @@ return $list;
 protected function lade_punkteergebnisse ($db)
 
 {$this->ergebnisse = array();
-
-$sql = "select id, avg(a_value) as avg, min(a_value) as min from rating r, answered a, student s WHERE r.mnr = a.mnr AND a.mnr = s.mnr AND c_token = '" . $this->c_token . "'AND a.s_token = '" . $this->s_token . "' group by id order by id;";
+// hier count (*) testen ob dasselbe rauskommt
+$sql = "select id, avg(a_value) as avg, min(a_value) as min, max(a_value) as max, count(id) as anz from rating r, answered a, student s WHERE r.mnr = a.mnr AND a.mnr = s.mnr AND c_token = '" . $this->c_token . "'AND a.s_token = '" . $this->s_token . "' group by id order by id;";
 $result = mysqli_query ($db, $sql);
-
-
-
-
 
 while ($row = mysqli_fetch_assoc($result))
 {
@@ -79,15 +90,15 @@ while ($row = mysqli_fetch_assoc($result))
 $frageerg = new FrageErgebnis;
 $frageerg->durchschnitt = $row["avg"];
 $frageerg->minimum = $row["min"];
+$frageerg->maximum = $row["max"];
+$frageerg->anzantworten = $row["anz"];
+$frageerg->stdabweichung = $this->berechne_stdabw($db, $row["id"], $frageerg->durchschnitt, $frageerg->anzantworten);
 $this->ergebnisse[]= $frageerg;
 
 }
 
 
 }
-
-
-
 
 public function erg_fuer_frage ($id)
 { return $this->ergebnisse[$id];
