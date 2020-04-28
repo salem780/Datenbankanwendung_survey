@@ -31,11 +31,9 @@ CREATE TABLE Rating (
     MNR CHAR(8),
     ID INT ,
     s_token CHAR(4),
-      a_value INT,
-    FOREIGN KEY (MNR) REFERENCES Student (MNR) on delete cascade on update cascade,
+    a_value INT,
+    FOREIGN KEY (MNR) REFERENCES answered (MNR) on delete cascade on update cascade,
     FOREIGN KEY (ID, s_token) REFERENCES Question (ID, s_token) on delete cascade on update cascade,
-
-
     CONSTRAINT PK_Rating PRIMARY KEY (MNR, ID,s_token)
 );
 
