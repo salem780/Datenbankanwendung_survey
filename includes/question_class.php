@@ -39,7 +39,7 @@ $this->lade_punkteergebnisse($db);
 //}
 
 
-protected function berechne_stdabw($db, $id, $durchschnitt, $anzantworten){
+protected function standardabweichung($db, $id, $durchschnitt, $anzantworten){
 $sql = "select a_value from rating r, answered a, student s WHERE r.mnr = a.mnr AND a.mnr = s.mnr AND c_token = '" . $this->c_token . "'AND a.s_token = '" . $this->s_token . "' and id = '" . $id . "' ;";
 $result = mysqli_query ($db, $sql);
 $varianz = 0;
@@ -92,12 +92,12 @@ $frageerg->durchschnitt = $row["avg"];
 $frageerg->minimum = $row["min"];
 $frageerg->maximum = $row["max"];
 $frageerg->anzantworten = $row["anz"];
-$frageerg->stdabweichung = $this->berechne_stdabw($db, $row["id"], $frageerg->durchschnitt, $frageerg->anzantworten);
+$frageerg->stdabweichung = $this->standardabweichung($db, $row["id"], $frageerg->durchschnitt, $frageerg->anzantworten);
 $this->ergebnisse[]= $frageerg;
 
 }
 
-
+/*
 }
 
 public function erg_fuer_frage ($id)

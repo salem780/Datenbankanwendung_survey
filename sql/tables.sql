@@ -5,12 +5,10 @@ username VARCHAR (32),
 FOREIGN KEY (username) REFERENCES surveyor (username) on delete cascade on update cascade
 );
 
-
 CREATE TABLE surveyor (
 username VARCHAR (32) PRIMARY KEY,
 password VARCHAR (256) NOT NULL
 );
-
 
 CREATE TABLE answered (
     MNR CHAR(8),
@@ -31,14 +29,11 @@ CREATE TABLE Rating (
     MNR CHAR(8),
     ID INT ,
     s_token CHAR(4),
-      a_value INT,
-    FOREIGN KEY (MNR) REFERENCES Student (MNR) on delete cascade on update cascade,
+    a_value INT,
+    FOREIGN KEY (MNR) REFERENCES answered (MNR) on delete cascade on update cascade,
     FOREIGN KEY (ID, s_token) REFERENCES Question (ID, s_token) on delete cascade on update cascade,
-
-
     CONSTRAINT PK_Rating PRIMARY KEY (MNR, ID,s_token)
 );
-
 
 CREATE TABLE student (
 MNR CHAR(8) PRIMARY KEY,
@@ -47,7 +42,6 @@ c_token CHAR(8),
 FOREIGN KEY (c_token) REFERENCES course (c_token) on delete cascade on update cascade
 );
 
-
 CREATE TABLE Question (
 ID INT,
 Text VARCHAR(256),
@@ -55,7 +49,6 @@ s_token CHAR(4),
 FOREIGN KEY (s_token) REFERENCES survey(s_token) on delete cascade on update cascade,
 CONSTRAINT PK_Question PRIMARY KEY (ID, s_token)
 );
-
 
 CREATE TABLE Activation (
 c_token CHAR(8),
