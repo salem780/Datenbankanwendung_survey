@@ -28,10 +28,10 @@ if ($number_of_rows > 0){
 /*
 //Author - Peter Metzger
 //Bewertung für Frage eintragen
-function inject_rating($_SESSION['mnr'], $_SESSION['aktfrage'], $s_token, $a_value){
+function inject_rating($_SESSION['mnr'], $_SESSION['question_number'], $s_token, $a_value){
     include "db_connection.php";
         $stmt = $db->prepare('INSERT INTO Rating (MNR, ID, s_token, a_value) VALUES (?, ?, ?, ?)');
-        $stmt->bind_param('ssss', $_SESSION['mnr'], $_SESSION['aktfrage'], $s_token, $a_value);
+        $stmt->bind_param('ssss', $_SESSION['mnr'], $_SESSION['question_number'], $s_token, $a_value);
 	    $stmt->execute();
 }
 
@@ -51,8 +51,10 @@ function set_status($_SESSION['mnr'], $s_token){
         $stmt = $db->prepare('UPDATE answered SET status = 1 WHERE mnr = ? AND s_token = ?'))
 	    $stmt->bind_param('ss', $_SESSION['mnr'], $s_token);
 	    $stmt->execute();
-}*/
-
+}
+*/
+//Author - Alissa Templin
+//Abfrage der freigeschalteten Fragebögen für die eingegebene MNR
 function check_mnr($db, $mnr){
 $_SESSION['survey_active'] = $db->query("Select * from answered, survey WHERE answered.s_token = survey.s_token AND answered.status = '0' AND answered.mnr = $mnr;");
 $num_of_rows = $_SESSION['survey_active']->num_rows;

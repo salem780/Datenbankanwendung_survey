@@ -9,8 +9,9 @@
     //Author: Alissa Templin
     include "db_connection.php";
     include 'session_student.php';
+    include 'functions.php';
 
-      //Vorbelegung des Radiobuttons
+      //Funktion zur Erstellung und Vorbelegung der Radiobuttons
     function checkRadioButton($a_value, $pre_value) {
       echo '<input type="radio" name="points" value="' . $a_value . '" ';
       if ($a_value == $pre_value)
@@ -47,7 +48,23 @@
         (isset ($_POST["prevqu"]) ==false)) {
         $_SESSION["question_number"] = 1;
             }
-
+            /*
+     //Verarbeitung der Antwort
+     if (isset ($_POST["nextqu"]) || ($_POST["prevqu"])) {
+          if ($_SESSION['question_number'] < $_SESSION['num_of_questions'])
+            {
+                if (isset($_POST["points"]))
+                  {
+                    //Punkte in DB speichern
+                    inject_rating ($_SESSION['mnr'], $_SESSION['question_number'], $s_token, $_POST["points"]);
+                  }
+            }
+           else {
+              //Kommentar in DB speichern
+              inject_comment($_SESSION['mnr'], $s_token, $_POST["comment"]);
+                }
+        }
+*/
     //Verarbeitung, wenn Nächste Button gedrückt wurde
     if (isset ($_POST["nextqu"]) == true) {
     $_SESSION['question_number'] ++;
@@ -58,7 +75,6 @@
     }
 
 
-
     echo "<h2> Fragebogen: " . $s_title . "</h2>";
 ?>
 
@@ -67,7 +83,7 @@
    //Fragentext ermitteln
         if ($_SESSION['question_number'] < $_SESSION['num_of_questions'])
             {
-               echo "<p> Frage " .$_SESSION['question_number']. " :</p>";
+               echo "<p> Frage " .$_SESSION['question_number']. ":</p>";
 
                $sql= $db->query("Select text from question where s_token = '".$s_token."' AND
                                  id = '".$_SESSION['question_number']."';");
