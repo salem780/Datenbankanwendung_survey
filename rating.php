@@ -28,7 +28,7 @@ echo $_SESSION['username'];
 
 // Dropdown menü, alle Fragebögen auslesen, die ein User erstellt hat
 
-$surveys = $db->query("select distinct s.s_title from activation a, survey s, rating r where  s.s_token = a.s_token AND s.username = '$username' AND r.s_token = a.s_token ;");
+$surveys = $db->query("select distinct s.s_title from activation a, survey s, rating r, answered an where an.status = '1' AND s.s_token = a.s_token AND s.username = '$username' AND r.s_token = a.s_token ;");
 
 //Dropdown zur titelauswahl
 
