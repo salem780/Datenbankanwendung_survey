@@ -25,25 +25,25 @@ if ($number_of_rows > 0){
   return true;
   }
 }
-/*
+
 //Author - Peter Metzger
 //Bewertung für Frage eintragen
-function inject_rating($_SESSION['mnr'], $_SESSION['question_number'], $s_token, $a_value){
+function inject_rating($mnr, $question_number, $s_token, $points){
     include "db_connection.php";
         $stmt = $db->prepare('INSERT INTO Rating (MNR, ID, s_token, a_value) VALUES (?, ?, ?, ?)');
-        $stmt->bind_param('ssss', $_SESSION['mnr'], $_SESSION['question_number'], $s_token, $a_value);
+        $stmt->bind_param('ssss', $mnr, $question_number, $s_token, $points);
 	    $stmt->execute();
 }
 
 //Author - Peter Metzger
 //Belegung des Kommentarfelds am Ende eines Fragebogens
-function inject_comment($_SESSION['mnr'], $s_token, $comment){
+function inject_comment($comment, $mnr, $s_token){
     include "db_connection.php";
-        $stmt = $db->prepare('UPDATE answered SET comment = ? WHERE mnr = ? AND s_token = ?'))
-	    $stmt->bind_param('sss', $comment, $_SESSION['mnr'], $s_token);
+        $stmt = $db->prepare('UPDATE answered SET comment = ? WHERE mnr = ? AND s_token = ?');
+	    $stmt->bind_param('sss', $comment, $mnr, $s_token);
 	    $stmt->execute();
 }
-
+/*
 //Author - Peter Metzger
 //Fragebogen als abgeschlossen markieren
 function set_status($_SESSION['mnr'], $s_token){
