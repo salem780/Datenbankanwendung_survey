@@ -48,7 +48,7 @@
         (isset ($_POST["prevqu"]) ==false)) {
         $_SESSION["question_number"] = 1;
             }
-            /*
+
      //Verarbeitung der Antwort
      if (isset ($_POST["nextqu"]) || ($_POST["prevqu"])) {
           if ($_SESSION['question_number'] < $_SESSION['num_of_questions'])
@@ -56,15 +56,20 @@
                 if (isset($_POST["points"]))
                   {
                     //Punkte in DB speichern
-                    inject_rating ($_SESSION['mnr'], $_SESSION['question_number'], $s_token, $_POST["points"]);
+                    $mnr = $_SESSION['mnr'];
+                    $question_number = $_SESSION['question_number'];
+                    $points = $_POST["points"];
+                    inject_rating ($mnr, $question_number, $s_token, $points);
                   }
             }
            else {
               //Kommentar in DB speichern
-              inject_comment($_SESSION['mnr'], $s_token, $_POST["comment"]);
+              $comment = $_POST["comment"];
+              $mnr = $_SESSION['mnr'];
+              inject_comment($comment, $mnr, $s_token);
                 }
         }
-*/
+
     //Verarbeitung, wenn Nächste Button gedrückt wurde
     if (isset ($_POST["nextqu"]) == true) {
     $_SESSION['question_number'] ++;
