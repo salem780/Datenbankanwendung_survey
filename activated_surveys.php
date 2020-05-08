@@ -16,7 +16,7 @@ $mnr = $_SESSION['mnr'];
     <title>Fragebogen</title>
   </head>
   <body>
-<form method="POST" action="rate_questions.php">
+<form method="POST" action="rate_questions2.php">
    <?php
    echo "<h1>Hello " . $mnr . "</h1>";
              if(check_mnr($db, $mnr)) {
@@ -54,7 +54,7 @@ $mnr = $_SESSION['mnr'];
                   <?php echo $data->s_title; ?>
               </td>
               <td>
-                  <input type="submit" value="Start" onclick="window.location.href='rate_questions.php'" />
+                  <input type="submit" value="Start" onclick="window.location.href='rate_questions2.php'" />
               </td>
         </tr>
       <?php
