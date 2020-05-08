@@ -70,7 +70,7 @@ $coursetoken = $db->query("select c_token from activation where  s_token ='".$_S
 
 
 
-//echo "<form action='rating.php' method='POST'>";
+
 echo "<select name='coursetoken'>";
 while($row = mysqli_fetch_assoc($coursetoken)){
  echo "<option name= 'title' value = ".$row['c_token'].">".$row['c_token']."</option>";
