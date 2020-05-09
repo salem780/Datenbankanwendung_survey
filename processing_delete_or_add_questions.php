@@ -32,10 +32,8 @@ $questions = $db->query("select id, text from question where s_token = '".$s_tok
 
 echo "<form method='POST' action='delete_questions.php'>";
 //Dynamische Erzeugung von Checkboxen und Labels nach Anzahl der Fragen
-$question_number = 1;
 while($row = mysqli_fetch_assoc($questions)){
-echo "<label><input type='checkbox' name='question[]' value=".$row["id"].">"."Frage ".$question_number.": ".htmlentities($row["text"])."</label> <br>";
-$question_number++;
+echo "<label><input type='checkbox' name='question[]' value=".$row["id"].">"."Frage ".htmlentities($row["id"]).": ".htmlentities($row["text"])."</label> <br>";
  }
  //Verstecktes Inputfeld, um Umfragenkürzel mit zu übergeben
  echo "<input type='hidden' name='s_token' value=".$s_token.">";
