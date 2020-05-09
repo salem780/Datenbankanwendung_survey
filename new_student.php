@@ -21,7 +21,7 @@ if (!isset($_POST['course']) AND !isset($_SESSION['c_token'])){
 <h1>Alle Studenten auf einen Blick</h1>
 
 <?php
-//Falls Postvariable vorhanden, diese in $c_token speichern und Session eröffnen. Falls Session vorhanden, diese in $c_token speichern.
+//Falls Postvariable vorhanden, diese in $c_token speichern und Session eröffnen. Falls Postvariable nicht vorhanden, Sessionvariable in $c_token speichern.
  if (isset($_POST["course"])) {
   $course = $_POST["course"];
   $c_token = $course[0];
@@ -33,7 +33,7 @@ if (!isset($_POST['course']) AND !isset($_SESSION['c_token'])){
  //Matrikelnummern des Kurses in $mnr speichern
  $mnr = $db->query("select mnr from student where c_token = '".$c_token."';");
 
- echo $_SESSION["c_token"] . "<br>";
+ echo "<h4>". $_SESSION['c_token'] . "</h4>";
 
 //Ausgeben der Daten
 while($row = mysqli_fetch_assoc($mnr)) {
