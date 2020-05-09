@@ -25,47 +25,10 @@ $mnr = $_SESSION['mnr'];
              echo "<label><input type='radio' name='survey' value=".$row['s_token'].">".$row['s_title']."</label> <br>";
              }
 
-/*             while(($row = $_SESSION['survey_active']->fetch_object()) != false) {
-             //echo "$row->s.s_title <br/>";
-             $rows[] = $row;
-             }
-    ?>
 
-    <div data-role="main" class="ui-content">
-    	<h1>Fragebögen</h1>
-      <table id="Fragebögen_freigeschaltet" data-role="table" class="ui-responsive" data-mode="columntoggle" data-column-btn-text="Spalten" width="30%">
-        <thead>
-          <tr>
-            <th>Kürzel</th>
-            <th>Titel</th>
-            <th>Ersteller</th>
-
-          </tr>
-        </thead>
-        <tbody>
-      <?php
-      foreach ($rows as $data) {
-      ?>
-          <tr>
-              <td>
-                  <?php echo $data->s_token; ?>
-              </td>
-              <td>
-                  <?php echo $data->s_title; ?>
-              </td>
-              <td>
-                  <input type="submit" value="Start" onclick="window.location.href='rate_questions2.php'" />
-              </td>
-        </tr>
-      <?php
-      }
-      ?>
-        </tbody>
-      </table>
-      */
-      } else{
-      echo "Aktuell keine Fragebögen vorhanden!";}
-      ?>
+              } else{
+              echo "Aktuell keine Fragebögen vorhanden!";}
+   ?>
 
 <br>
 <button type="submit"
