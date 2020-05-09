@@ -44,7 +44,7 @@ echo "<label><input type='checkbox' name='question[]' value=".$row["id"].">"."Fr
 }else if(isset($_POST["submit_add_questions"])){
 echo "Wie viele Fragen möchten Sie hinzufügen? <br> <br>";
 echo "<form method='POST' action='add_questions.php'>";
-echo "<input type='number' name='number_of_questions' min='1'>";
+echo "<input type='number' name='number_of_questions' min='1' required>";
 //Verstecktes Inputfeld, um Umfragenkürzel mit zu übergeben
 echo "<input type='hidden' name='s_token' value=".$s_token.">";
 echo "<input type='submit' value='Diese Anzahl Fragen hinzufügen' name='add_number_of_questions'>";
