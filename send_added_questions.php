@@ -28,11 +28,9 @@ foreach ($_POST['questions'] as $question) {
 
 echo "Diese Fragen wurden erfolgreich hinzugefügt: <br> <br>";
 //Hinzugefügte Fragen auslesen
-$question_number = 1;
-$added_questions = $db->query("select text from question where s_token = '".$_POST["s_token"]."' and id > '".$max_id."';");
+$added_questions = $db->query("select id, text from question where s_token = '".$_POST["s_token"]."' and id > '".$max_id."';");
 while($row = mysqli_fetch_assoc($added_questions)){
-echo "Frage ". $question_number . ": ".htmlentities($row["text"])."<br>";
-$question_number++;
+echo "Frage ". htmlentities($row["id"]) . ": ".htmlentities($row["text"])."<br>";
 }
 
 echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a>";
