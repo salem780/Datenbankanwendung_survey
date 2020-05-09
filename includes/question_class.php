@@ -1,61 +1,35 @@
 <?php
 
-include_once 'db_connection.php'; // $db
-//$s_token = $_SESSION['s_token'];
-//echo $s_token;
+include_once 'db_connection.php';
 
-//$c_token = $_SESSION["coursetoken"];
-//echo $c_token;
 
-class FrageErgebnis {
+class Result {
 public $id;
-public $anzantworten;
-public $durchschnitt;
-public $minimum;
-public $maximum;
-public $stdabweichung;
+public $nr_answered;
+public $average;
+public $min;
+public $max;
+public $std_deviation;
 }
 
-class Auswertung
+class Evaluation
 {
 public $s_token;
 public $c_token;
-private $ergebnisse;
+private $results;
 private $comments;
 
-//Methods
+
 public function __construct ($s_token, $c_token)
 {
 $this->s_token = $s_token;
 $this->c_token = $c_token;
 $db = new mysqli("localhost", "root", "", "survey");
-$this->get_Comments($db);
-$this->lade_punkteergebnisse($db);
+$this->get_comments($db);
+$this->calc_result($db);
 
 }
-//public function setId ($id){
-//$this->id = $id;
-//echo $this->id;
-//}
-
-
-protected function standardabweichung($db, $id, $durchschnitt, $anzantworten){
-$sql = "select a_value from rating r, answered a, student s WHERE r.mnr = a.mnr AND a.mnr = s.mnr AND c_token = '" . $this->c_token . "'AND a.s_token = '" . $this->s_token . "' and id = '" . $id . "' ;";
-$result = mysqli_query ($db, $sql);
-$varianz = 0;
-while ($row = mysqli_fetch_assoc($result)){
-
-$varianz +=( ($row["a_value"] - $durchschnitt) * ($row["a_value"] - $durchschnitt));
-
-$standardabweichung= sqrt($varianz/ $anzantworten);
-
-}
-return $standardabweichung;
-}
-
-
-
-public function get_Comments ($db){
+private function get_comments ($db){
 $this->comments = array();
 $sql = "select comment from answered a, student s WHERE a.mnr=s.mnr AND status = '1' AND c_token = '" . $this->c_token . "' AND a.s_token = '" . $this->s_token . "' ;";
 
@@ -63,46 +37,53 @@ $result = mysqli_query ($db, $sql);
 while ($row = mysqli_fetch_assoc($result))
 {
 $this->comments[] = $row["comment"];
+
 }
 }
 
-public function commentlist ()
-{
-$list = "";
-for ($i = 0; $i < sizeof($this->comments); $i++)
-{
-$list .= "<p>" . $this->comments[$i] . "</p> <p> </p>";
-}
-return $list;
+public function all_comments ()
+{  for ($x=0; $x<count($this->comments); $x++) {
+	            echo "<p>" . $this->comments[$x] . "</p> ";
+	            }
 }
 
-protected function lade_punkteergebnisse ($db)
 
-{$this->ergebnisse = array();
-// hier count (*) testen ob dasselbe rauskommt
+private function calc_result ($db)
+
+{$this->results = array(1);
 $sql = "select id, avg(a_value) as avg, min(a_value) as min, max(a_value) as max, count(id) as anz from rating r, answered a, student s WHERE r.mnr = a.mnr AND a.mnr = s.mnr AND c_token = '" . $this->c_token . "'AND a.s_token = '" . $this->s_token . "' group by id order by id;";
 $result = mysqli_query ($db, $sql);
 
 while ($row = mysqli_fetch_assoc($result))
 {
-
-
-$frageerg = new FrageErgebnis;
-$frageerg->durchschnitt = $row["avg"];
-$frageerg->minimum = $row["min"];
-$frageerg->maximum = $row["max"];
-$frageerg->anzantworten = $row["anz"];
-$frageerg->stdabweichung = $this->standardabweichung($db, $row["id"], $frageerg->durchschnitt, $frageerg->anzantworten);
-$this->ergebnisse[]= $frageerg;
+$q_result = new Result;
+$q_result->average = $row["avg"];
+$q_result->min = $row["min"];
+$q_result->max = $row["max"];
+$q_result->nr_answered = $row["anz"];
+$q_result->std_deviation = $this->calc_deviation($db, $row["id"], $q_result->average, $q_result->nr_answered);
+$this->results[]= $q_result;
 
 }
-
 }
 
-public function erg_fuer_frage ($id)
-{ return $this->ergebnisse[$id];
-
+public function get_results ($id)
+{ return $this->results[$id];
 }
 
+private function calc_deviation($db, $id, $average, $nr_answered){
+$sql = "select a_value from rating r, answered a, student s WHERE r.mnr = a.mnr AND a.mnr = s.mnr AND c_token = '" . $this->c_token . "'AND a.s_token = '" . $this->s_token . "' and id = '" . $id . "' ;";
+$result = mysqli_query ($db, $sql);
+$varianz = 0;
+while ($row = mysqli_fetch_assoc($result)){
+
+$varianz +=( ($row["a_value"] - $average) * ($row["a_value"] - $average));
+
+$standardabweichung= sqrt($varianz/ $nr_answered);
+
+}
+return $standardabweichung;
 }
 
+
+}
