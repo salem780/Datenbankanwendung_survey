@@ -1,6 +1,6 @@
 <?php
  //Author - Peter Metzger
- //Alle Matrikelnummern eines ausgewählten Kurses und neue Matrikelnummern hinzufügen Felder
+ //Alle Matrikelnummern eines ausgewählten Kurses und neue Matrikelnummern hinzufügen
 include "db_connection.php";
 include "session_surveyor.php";
 
@@ -31,23 +31,29 @@ if (!isset($_POST['course']) AND !isset($_SESSION['c_token'])){
   $c_token = $course;
  }
  //Matrikelnummern des Kurses in $mnr speichern
- $mnr = $db->query("select mnr from student where c_token = '".$c_token."';");
+    $stmt = $db->prepare('SELECT mnr FROM Student WHERE c_token = ?');
+	$stmt->bind_param('s', $c_token);
+	$stmt->execute();
+    $stmt->bind_result($mnr);
 
- echo "<h4>". $_SESSION['c_token'] . "</h4>";
+ echo "<h4>". htmlentities($_SESSION['c_token']) . "</h4>";
 
 //Ausgeben der Daten
-while($row = mysqli_fetch_assoc($mnr)) {
-  echo $row["mnr"] . "<br>";
- }
+    while ($stmt->fetch()) {
+    echo htmlentities($mnr) . "<br>";
+    }
+
+    $stmt->close();
+$db->close();
 ?>
 <br>
  <div class="wrapper-main">
                         <section class="section-default">
                         <h3>Neuen Student erstellen</h3>
                         <form class="form-signup" action="create_student.php" method="POST">
-                            <input type="text" name="mnr" placeholder="Matrikelnummer" required></br>
+                            <input type="number" min="1000" name="mnr" placeholder="Matrikelnummer" required></br>
                             <input type="text" name="student_name" placeholder="Name" required></br>
-                            <?php echo "<input type='text' name='c_token' value='$c_token' disabled><br>";?>
+                            <input type='text' name='c_token' value= '<?php echo htmlentities($c_token) ?>' disabled><br>
                             <button type="submit" name="submit">Erstellen</button></br></br>
                         </form>
                         </section>
