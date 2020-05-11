@@ -12,7 +12,7 @@
                 <div class="wrapper-main">
                 <section class="section-default">
                 <h1>Registrierung</h1>
-                <form class="form-signup" action="register.php" method="POST">
+                <form class="form-signup" action="create_surveyor.php" method="POST">
                     <input type="text" name="username" placeholder="Benutzername" required></br></br>
                     <input type="password" name="password" placeholder="Passwort" required></br>
                     <input type="password" name="re-password" placeholder="Passwort wiederholen" required></br>
