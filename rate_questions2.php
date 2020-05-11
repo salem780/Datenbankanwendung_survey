@@ -76,23 +76,17 @@
                 if (isset($_POST["points"]))
                   {
                     //Punkte in DB speichern
-                    $mnr = $_SESSION['mnr'];
-                    $question_number = $_SESSION['question_number'];
-                    $points = $_POST["points"];
-                    inject_rating ($mnr, $question_number, $s_token, $points);
+                    inject_rating ($_SESSION['mnr'], $_SESSION['question_number'], $s_token, $_POST["points"]);
                   }
             }
            else {
               //Kommentar in DB speichern
-              $comment = $_POST["comment"];
-              $mnr = $_SESSION['mnr'];
-              inject_comment($comment, $mnr, $s_token);
+              inject_comment($_POST["comment"], $_SESSION['mnr'], $s_token);
                 }
         }
     //Verarbeitung, wenn Save Button gedrückt wurde
      if (isset ($_POST["sendsurvey"])) {
-     $mnr = $_SESSION['mnr'];
-     set_status($mnr, $s_token);
+     set_status($_SESSION['mnr'], $s_token);
      }
 
 
