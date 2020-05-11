@@ -30,6 +30,7 @@ if ($number_of_rows > 0){
 //Bewertung für Frage eintragen
 function inject_rating($mnr, $question_number, $s_token, $points){
     include "db_connection.php";
+        $db->query('DELETE from Rating where mnr ="'.$mnr.'" AND id = "'.$question_number.'"AND s_token = "'.$s_token.'";');
         $stmt = $db->prepare('INSERT INTO Rating (MNR, ID, s_token, a_value) VALUES (?, ?, ?, ?);');
         $stmt->bind_param('ssss', $mnr, $question_number, $s_token, $points);
 	    $stmt->execute();
@@ -39,7 +40,7 @@ function inject_rating($mnr, $question_number, $s_token, $points){
 //Belegung des Kommentarfelds am Ende eines Fragebogens
 function inject_comment($comment, $mnr, $s_token){
     include "db_connection.php";
-        $stmt = $db->prepare('UPDATE answered SET comment = ? WHERE mnr = ? AND s_token = ?;');
+        $stmt = $db->prepare('UPDATE Answered SET comment = ? WHERE mnr = ? AND s_token = ?;');
 	    $stmt->bind_param('sss', $comment, $mnr, $s_token);
 	    $stmt->execute();
 }
@@ -48,7 +49,7 @@ function inject_comment($comment, $mnr, $s_token){
 //Fragebogen als abgeschlossen markieren
 function set_status($mnr, $s_token){
     include "db_connection.php";
-        $stmt = $db->prepare('UPDATE answered SET status = 1 WHERE mnr = ? AND s_token = ?;');
+        $stmt = $db->prepare('UPDATE Answered SET status = 1 WHERE mnr = ? AND s_token = ?;');
 	    $stmt->bind_param('ss', $mnr, $s_token);
 	    $stmt->execute();
 }
