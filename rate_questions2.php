@@ -39,6 +39,16 @@
     $s_token = $_SESSION['s_token'];
     }
 
+
+
+
+    /*
+// Wenn fragebogen abschicken gewählt
+    if(isset($_POST['sendsurvey'])){
+    echo "Vielen Dank für die Beantwortung!";
+    echo "<br/>";}
+    */
+
     //Anzahl der Fragen ermitteln
     $questions= $db->query("Select * from question WHERE question.s_token = '".$s_token."';");
     $num_of_questions= $questions->num_rows;
@@ -50,6 +60,8 @@
     $sql= $db->query("Select * from survey WHERE survey.s_token = '".$s_token."';");
     $result= mysqli_fetch_assoc($sql);
     $s_title= $result["s_title"];
+
+
 
     //Wenn kein Button gedrückt wurde, Fragennummer = 1
     if ((isset ($_POST["nextqu"]) == false )  &&
@@ -77,6 +89,12 @@
               inject_comment($comment, $mnr, $s_token);
                 }
         }
+    //Verarbeitung, wenn Save Button gedrückt wurde
+     if (isset ($_POST["sendsurvey"])) {
+     $mnr = $_SESSION['mnr'];
+     set_status($mnr, $s_token);
+     }
+
 
     //Verarbeitung, wenn Nächste Button gedrückt wurde
     if (isset ($_POST["nextqu"]) == true) {
@@ -88,11 +106,20 @@
     }
 
 
+
     echo "<h2> Fragebogen: " . $s_title . "</h2>";
 ?>
 
   <form action="rate_questions2.php" method="post">
   <?php
+      //Checken, ob alle Fragen eines Fragebogen beantwortet wurden
+          $sql = $db->query("Select * from rating where s_token = '".$s_token."' AND mnr = '".$_SESSION['mnr']."';");
+          $num_rated_questions = $sql->num_rows;
+          if ($num_rated_questions == $_SESSION['num_of_questions']-1) {
+          $var = true;
+          }else{
+          $var = false;}
+
    //Fragentext ermitteln
         if ($_SESSION['question_number'] < $_SESSION['num_of_questions'])
             {
@@ -151,16 +178,19 @@
                 if ($_SESSION["question_number"] == $_SESSION['num_of_questions']) echo "disabled"; ?>
             name="nextqu" value="Vorwärts"/>
             <br/> <br/>
-            <input type="submit" name="save" value="Speichern und beenden"/>
-            <br/> <br/>
-            <input type="submit"
-                <?php
-                if ($_SESSION["question_number"] == $_SESSION['num_of_questions']) echo "disabled"; ?>
-            name="sendsurvey" value="Fragebogen abschicken"/>
+
             <br/>
 
     </form>
+    <form action="activated_surveys.php" method="post">
+            <input type="submit" name="save" value="Speichern und beenden"/>
+            <br/> <br/>
+            <input type="submit"
+            <?php
+            if ($var == false) echo "disabled";?>
+            name="sendsurvey" value="Fragebogen abschicken"/>
 
+    </form>
 
     </body>
   </html>
