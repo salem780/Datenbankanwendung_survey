@@ -7,12 +7,11 @@
   </head>
     <?php
     //Zugriff über URL verhindern
-    /*
-    if (!isset($_POST['survey'])) {
-        echo "<a href='activated_surveys.php'> Zurück zur Startseite</a><br>";
-    	exit("So geht das aber nicht!");
+    if (!isset($_POST['survey']) && !isset($_POST['nextqu']) && !isset($_POST['prevqu']) && !isset($_POST['sendsurvey']) && !isset($_POST['save']))  {
+        echo "<a href='activated_surveys.php'> Zurück zur Fragebogenauswahl</a><br>";
+    	exit();
     }
-    */
+
     //Author: Alissa Templin
     include "db_connection.php";
     include 'session_student.php';
@@ -20,11 +19,11 @@
 
       //Funktion zur Erstellung und Vorbelegung der Radiobuttons
     function checkRadioButton($a_value, $pre_value) {
-      echo '<input type="radio"  name="points" value="' . $a_value . '" ';
+      echo '<input type="radio"  name="points" value="' . ($a_value) . '" ';
       if ($a_value == $pre_value)
           echo " checked ";
           echo '/>';
-      echo '<label for="points"> '.$a_value.' </label> ';
+      echo '<label for="points"> '.htmlentities($a_value).' </label> ';
       }
     ?>
     <body>
@@ -41,14 +40,14 @@
 
 
     //Anzahl der Fragen ermitteln
-    $questions= $db->query("Select * from question WHERE question.s_token = '".$s_token."';");
+    $questions= $db->query("Select * from question WHERE question.s_token = '".htmlentities($s_token)."';");
     $num_of_questions= $questions->num_rows;
     $_SESSION['num_of_questions'] = $num_of_questions;
     $_SESSION['num_of_questions'] ++; //wegen Kommentarseite
-    //echo $_SESSION['num_of_questions'];
+
 
     //Titel des Fragebogen ermitteln
-    $sql= $db->query("Select * from survey WHERE survey.s_token = '".$s_token."';");
+    $sql= $db->query("Select * from survey WHERE survey.s_token = '".htmlentities($s_token)."';");
     $result= mysqli_fetch_assoc($sql);
     $s_title= $result["s_title"];
 
@@ -79,7 +78,7 @@
           if (isset ($_POST["sendsurvey"])) {
           $status = 1;
           set_status($_SESSION['mnr'], $s_token, $_POST["comment"], $status);
-          echo "<h4> Vielen Dank für die Beantwortung des Fragebogens: ".$s_title."</h4>";
+          echo "<h4> Vielen Dank für die Beantwortung des Fragebogens: ".htmlentities($s_title)."</h4>";
           }
     if (isset ($_POST["save"]) || isset($_POST["sendsurvey"])){
     echo '<a href="activated_surveys.php"> Hier können Sie weitere Fragebögen beantworten </a> </br>';

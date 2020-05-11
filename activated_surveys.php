@@ -24,11 +24,11 @@ $name = $result["student_name"];
 <form method="POST" action="rate_questions2.php">
    <?php
 
-   echo "<h1>Hallo " . $name . "</h1>";
+   echo "<h1>Hallo " . htmlentities($name) . "</h1>";
              if(check_mnr($db, $mnr)) {
              echo "<label>Wähle einen Fragebogen aus, den du bewerten möchtest:</label> <br><br>";
              while($row = mysqli_fetch_assoc($_SESSION['survey_active'])){
-             echo "<label><input type='radio' name='survey' value=".$row['s_token'].">".$row['s_title']."</label> <br>";
+             echo "<label><input type='radio' name='survey' value=".htmlentities($row['s_token']).">".htmlentities($row['s_title'])."</label> <br>";
              }
 
 
