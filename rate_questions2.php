@@ -6,6 +6,13 @@
     <title>Fragebogen ausfüllen</title>
   </head>
     <?php
+    //Zugriff über URL verhindern
+    /*
+    if (!isset($_POST['survey'])) {
+        echo "<a href='activated_surveys.php'> Zurück zur Startseite</a><br>";
+    	exit("So geht das aber nicht!");
+    }
+    */
     //Author: Alissa Templin
     include "db_connection.php";
     include 'session_student.php';
@@ -13,10 +20,11 @@
 
       //Funktion zur Erstellung und Vorbelegung der Radiobuttons
     function checkRadioButton($a_value, $pre_value) {
-      echo '<input type="radio" name="points" value="' . $a_value . '" ';
+      echo '<input type="radio"  name="points" value="' . $a_value . '" ';
       if ($a_value == $pre_value)
           echo " checked ";
           echo '/>';
+      echo '<label for="points"> '.$a_value.' </label> ';
       }
     ?>
     <body>
@@ -44,8 +52,8 @@
     $s_title= $result["s_title"];
 
     //Wenn kein Button gedrückt wurde, Fragennummer = 1
-    if ((isset ($_POST["nextqu"]) == false)  &&
-        (isset ($_POST["prevqu"]) ==false)) {
+    if ((isset ($_POST["nextqu"]) == false )  &&
+        (isset ($_POST["prevqu"]) == false )) {
         $_SESSION["question_number"] = 1;
             }
 
@@ -88,7 +96,8 @@
    //Fragentext ermitteln
         if ($_SESSION['question_number'] < $_SESSION['num_of_questions'])
             {
-               echo "<p> Frage " .$_SESSION['question_number']. ":</p>";
+               echo "<p> Frage " .$_SESSION['question_number']. " von " .($_SESSION['num_of_questions']-1). ": </p>";
+
 
                $sql= $db->query("Select text from question where s_token = '".$s_token."' AND
                                  id = '".$_SESSION['question_number']."';");
@@ -133,6 +142,7 @@
 <br/>
 
             <!-- Buttons erzeugen -->
+            <br/>
             <input type="submit"
                 <?php if ($_SESSION["question_number"] == 1) echo "disabled"; ?>
                 name="prevqu" value="Zurück"/>
@@ -140,11 +150,16 @@
                 <?php
                 if ($_SESSION["question_number"] == $_SESSION['num_of_questions']) echo "disabled"; ?>
             name="nextqu" value="Vorwärts"/>
+            <br/> <br/>
+            <input type="submit" name="save" value="Speichern und beenden"/>
+            <br/> <br/>
+            <input type="submit"
+                <?php
+                if ($_SESSION["question_number"] == $_SESSION['num_of_questions']) echo "disabled"; ?>
+            name="sendsurvey" value="Fragebogen abschicken"/>
             <br/>
 
     </form>
-
-
 
 
     </body>
