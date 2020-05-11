@@ -70,7 +70,7 @@
             }
 
      //Verarbeitung der Antwort
-     if (isset ($_POST["nextqu"]) || ($_POST["prevqu"])) {
+     if (isset ($_POST["nextqu"]) || isset($_POST["prevqu"]) || isset($_POST["sendsurvey"]) || isset($_POST["save"])) {
           if ($_SESSION['question_number'] < $_SESSION['num_of_questions'])
             {
                 if (isset($_POST["points"]))
@@ -84,10 +84,19 @@
               inject_comment($_POST["comment"], $_SESSION['mnr'], $s_token);
                 }
         }
-    //Verarbeitung, wenn Save Button gedrückt wurde
-     if (isset ($_POST["sendsurvey"])) {
-     set_status($_SESSION['mnr'], $s_token);
-     }
+         //Verarbeitung, wenn Fragebogen abschicken Button gedrückt wurde
+          if (isset ($_POST["sendsurvey"])) {
+
+          set_status($_SESSION['mnr'], $s_token);
+          echo "<h4> Vielen Dank für die Beantwortung des Fragebogens: ".$s_title."</h4>";
+          }
+    if (isset ($_POST["save"]) || ($_POST["sendsurvey"])){
+    echo '<a href="activated_surveys.php"> Hier können Sie weitere Fragebögen beantworten </a> </br>';
+    echo '<a href="logout.php"> Ausloggen </a>';
+    exit();}
+
+
+
 
 
     //Verarbeitung, wenn Nächste Button gedrückt wurde
@@ -172,19 +181,14 @@
                 if ($_SESSION["question_number"] == $_SESSION['num_of_questions']) echo "disabled"; ?>
             name="nextqu" value="Vorwärts"/>
             <br/> <br/>
-
+             <input type="submit"
+                        <?php
+                        if ($var == false) echo "disabled";?>
+                        name="sendsurvey" value="Fragebogen abschicken"/>
             <br/>
+             <input type="submit" name="save" value="Speichern und beenden"/>
 
-    </form>
-    <form action="activated_surveys.php" method="post">
-            <input type="submit" name="save" value="Speichern und beenden"/>
-            <br/> <br/>
-            <input type="submit"
-            <?php
-            if ($var == false) echo "disabled";?>
-            name="sendsurvey" value="Fragebogen abschicken"/>
-
-    </form>
+ </form>
 
     </body>
   </html>
