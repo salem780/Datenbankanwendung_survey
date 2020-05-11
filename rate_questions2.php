@@ -40,15 +40,6 @@
     }
 
 
-
-
-    /*
-// Wenn fragebogen abschicken gewählt
-    if(isset($_POST['sendsurvey'])){
-    echo "Vielen Dank für die Beantwortung!";
-    echo "<br/>";}
-    */
-
     //Anzahl der Fragen ermitteln
     $questions= $db->query("Select * from question WHERE question.s_token = '".$s_token."';");
     $num_of_questions= $questions->num_rows;
@@ -94,6 +85,7 @@
     echo '<a href="activated_surveys.php"> Hier können Sie weitere Fragebögen beantworten </a> </br>';
     echo '<a href="logout.php"> Ausloggen </a>';
     exit();}
+
 
 
 
