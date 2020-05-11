@@ -40,15 +40,6 @@
     }
 
 
-
-
-    /*
-// Wenn fragebogen abschicken gewählt
-    if(isset($_POST['sendsurvey'])){
-    echo "Vielen Dank für die Beantwortung!";
-    echo "<br/>";}
-    */
-
     //Anzahl der Fragen ermitteln
     $questions= $db->query("Select * from question WHERE question.s_token = '".$s_token."';");
     $num_of_questions= $questions->num_rows;
@@ -87,13 +78,14 @@
          //Verarbeitung, wenn Fragebogen abschicken Button gedrückt wurde
           if (isset ($_POST["sendsurvey"])) {
 
-          set_status($_SESSION['mnr'], $s_token);
-          echo "<h4> Vielen Dank für die Beantwortung des Fragebogens: ".$s_title."</h4>";
-          }
-    if (isset ($_POST["save"]) || ($_POST["sendsurvey"])){
-    echo '<a href="activated_surveys.php"> Hier können Sie weitere Fragebögen beantworten </a> </br>';
-    echo '<a href="logout.php"> Ausloggen </a>';
-    exit();}
+              set_status($_SESSION['mnr'], $s_token);
+              echo "<h4> Vielen Dank für die Beantwortung des Fragebogens: ".$s_title."</h4>";
+              }
+          if (isset ($_POST["save"]) || isset($_POST["sendsurvey"])){
+            echo '<a href="activated_surveys.php"> Hier können Sie weitere Fragebögen beantworten </a> </br>';
+            echo '<a href="logout.php"> Ausloggen </a>';
+            exit();
+            }
 
 
 
