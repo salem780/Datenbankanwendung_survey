@@ -10,7 +10,7 @@ if (!isset($_POST['username'], $_POST['password'])) {
 	exit('Bitte das Formular komplett ausfüllen');
 }
 //Überprüfung ob Benutzername vorhanden
-if ($stmt = $db->prepare('SELECT password FROM Surveyor WHERE username = ?')) {
+    $stmt = $db->prepare('SELECT password FROM Surveyor WHERE username = ?');
 	$stmt->bind_param('s', $_POST['username']);
 	$stmt->execute();
 	$stmt->store_result();
@@ -20,7 +20,6 @@ if ($stmt = $db->prepare('SELECT password FROM Surveyor WHERE username = ?')) {
     	//Passwort wird überprüft
     	if (password_verify($_POST['password'], $password)) {
     		//Erfolgreiche Verifizierung, Session wird gestartet
-    		session_regenerate_id();
     		$_SESSION['username'] = $_POST['username'];
     		header("Location: surveyor_logged.php");
     	}
@@ -32,6 +31,5 @@ if ($stmt = $db->prepare('SELECT password FROM Surveyor WHERE username = ?')) {
     	echo 'Falscher Benutzername';
     }
     $stmt->close();
-}
 $db->close();
 ?>

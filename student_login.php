@@ -13,7 +13,7 @@
                        <section class="section-default">
                        <h1>LogIn</h1>
                        <form class="form-signup" action="authenticate_mnr.php" method="POST">
-                           <input type="text" name="mnr" placeholder="Matrikelnummer" required></br></br>
+                           <input type="number" min="1000" name="mnr" placeholder="Matrikelnummer" required></br>
                            <button type="submit" name="submit">LogIn</button></br>
                        </form>
                        <p>Hier gehts zum Befrager <a href="index.php">LogIn</p>
