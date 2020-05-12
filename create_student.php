@@ -28,7 +28,7 @@ verify_input($_POST['student_name'], 32, 1, 'Der Name');
 	$stmt->bind_param('sss', $_POST['mnr'], $_POST['student_name'], $_SESSION['c_token']);
 	$stmt->execute();
 
-//Auslesen der freigeschalteten Fragebogen und Einfügen mit Status auf 0 gesetzt
+//Neuem Student Zugriff auf Umfragen für seinen Kurs geben
     $stmt = $db->prepare('SELECT s_token FROM activation WHERE c_token = ?');
 	$stmt->bind_param('s', $_SESSION['c_token']);
 	$stmt->execute();
