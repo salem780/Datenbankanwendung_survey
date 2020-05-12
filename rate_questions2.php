@@ -13,6 +13,7 @@
     }
 
     //Author: Alissa Templin
+    //Umsetzung des Fragenblättern und der Bewertung der Fragen
     include "db_connection.php";
     include 'session_student.php';
     include 'functions.php';
