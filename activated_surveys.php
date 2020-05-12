@@ -1,6 +1,7 @@
 
 <?php
 //Author:Alissa Templin
+//Erstellen einer Liste aller Fragebögen, die für den jeweiligen Studenten (MNR) zur Beantwortung freigeschaltet sind
 include "db_connection.php";
 include 'session_student.php';
 include 'functions.php';

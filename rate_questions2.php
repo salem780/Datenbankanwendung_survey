@@ -13,6 +13,7 @@
     }
 
     //Author: Alissa Templin
+    //Umsetzung des Fragenblättern und der Bewertung der Fragen
     include "db_connection.php";
     include 'session_student.php';
     include 'functions.php';
@@ -77,6 +78,7 @@
          //Verarbeitung, wenn Fragebogen abschicken Button gedrückt wurde
           if (isset ($_POST["sendsurvey"])) {
           set_status($_SESSION['mnr'], $s_token);
+          inject_comment($_POST["comment"], $_SESSION['mnr'], $s_token);
           echo "<h4> Vielen Dank für die Beantwortung des Fragebogens: ".htmlentities($s_title)."</h4>";
           }
     if (isset ($_POST["save"]) || isset($_POST["sendsurvey"])){
