@@ -55,16 +55,11 @@ $db->close();
 
 //Author - Peter Metzger
 //Fragebogen als abgeschlossen markieren
-function set_status($mnr, $s_token, $comment, $status){
+function set_status($mnr, $s_token, $comment){
     include "db_connection.php";
-        //Bisheriger Statuseintrag löschen
-        $stmt = $db->prepare('DELETE from Answered where mnr = ? AND s_token = ?;');
-        $stmt->bind_param('ss', $mnr, $s_token);
-        $stmt->execute();
-        //Neuen Antwortwert speichern
-        $stmt = $db->prepare('INSERT into Answered (MNR, s_token, comment, status) Values (?,?,?,?);');
-	    $stmt->bind_param('ssss', $mnr, $s_token, $comment, $status);
-	    $stmt->execute();
+          $stmt = $db->prepare('UPDATE Answered SET status = 1 WHERE mnr = ? AND s_token = ?;');
+    	  $stmt->bind_param('ss', $mnr, $s_token);
+    	  $stmt->execute();
     $stmt->close();
 $db->close();
 }
