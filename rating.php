@@ -16,7 +16,7 @@ include_once 'includes/question_class.php';
 <?php
 
 //Username in Variable speichern
-$username = htmlentities($_SESSION["username"]);
+$username = $_SESSION["username"];
 echo '<a>Willkommen zu deiner Auswertung </a>';
 echo $_SESSION['username'];
 
@@ -42,7 +42,7 @@ $s_token = htmlentities($s_token["s_token"]);
 $_SESSION['s_token'] = $s_token;
 
 //Kurse auslesen, die für diesen Fragebogenkürzel freigeschaltet sind
-$coursetoken = $db->query("select c_token from activation where  s_token ='".$_SESSION['s_token']."' ;");
+$coursetoken = $db->query("select c_token from activation a, answered an where an.status = '1' AND s_token ='".$_SESSION['s_token']."' ;");
 
 //Dropdown zur Kursauswahl
 echo "<select name='coursetoken'>";
