@@ -76,7 +76,7 @@
         }
          //Verarbeitung, wenn Fragebogen abschicken Button gedrückt wurde
           if (isset ($_POST["sendsurvey"])) {
-          set_status($_SESSION['mnr'], $s_token, $_POST["comment"]);
+          set_status($_SESSION['mnr'], $s_token);
           echo "<h4> Vielen Dank für die Beantwortung des Fragebogens: ".htmlentities($s_title)."</h4>";
           }
     if (isset ($_POST["save"]) || isset($_POST["sendsurvey"])){
