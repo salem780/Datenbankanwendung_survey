@@ -19,7 +19,7 @@ private $results;
 private $comments;
 
 //Konstruktor, der das Objekt Gesamtauswertung beim Aufruf in rating.php erzeugt
-//beim Aufruf des Konstruktors werden die Ergebnisse der Fragen des Fragebogens berechnet
+//Beim Aufruf des Konstruktors werden die Ergebnisse der Fragen des Fragebogens berechnet
 public function __construct ($s_token, $c_token)
 {
 $this->s_token = $s_token;

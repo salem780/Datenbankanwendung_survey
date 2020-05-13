@@ -76,11 +76,11 @@ echo "<th>Min</th>";
 echo "<th>Standardabweichung</th>";
 echo "</tr>";
 
-//Konstruktor aufrufen um Fragenergebnisse sowie Kommentarliste zu erzeugen und Sessionvariablen übergeben
+//Konstruktor aufrufen um Fragenergebnisse sowie Kommentarliste zu erzeugen und Sessionvariablen zu übergeben
 $evaluation = new Evaluation ($_SESSION['s_token'], $_SESSION["coursetoken"]);
 
 //Dynamische Erzeugung von Tabellenzeilen nach der Anzahl der existierenden Fragen
-//alle Fragen und Berechnungen des Fragebogens durch Methodenaufruf ausgeben
+//Alle Fragen und Berechnungen des Fragebogens durch Methodenaufruf ausgeben
 $result = mysqli_query ($db, "select id, text from question WHERE s_token ='".$_SESSION['s_token']."';");
 while ($row = mysqli_fetch_assoc($result))
 {
