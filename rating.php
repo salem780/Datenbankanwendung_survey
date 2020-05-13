@@ -42,7 +42,7 @@ $_SESSION['s_token'] = htmlentities($result["s_token"]);
 
 
 //Kurse auslesen, die für diesen Fragebogenkürzel freigeschaltet sind
-$coursetoken = $db->query("select c_token from activation a, answered an where an.status = '1' AND s_token ='".$_SESSION['s_token']."' ;");
+$coursetoken = $db->query("select c_token from activation a, answered an where an.status = '1' AND an.s_token = a.s_token AND a.s_token ='".$_SESSION['s_token']."';");
 
 //Dropdown zur Kursauswahl
 echo "<select name='coursetoken'>";

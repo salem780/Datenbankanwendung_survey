@@ -59,48 +59,45 @@
         (isset ($_POST["prevqu"]) == false )) {
         $_SESSION["question_number"] = 1;
             }
+                //Verarbeitung, wenn Nächste Button gedrückt wurde
+                if (isset ($_POST["nextqu"])) {
+                $_SESSION['question_number'] ++;
+                }
+                //Verarbeitung, wenn Zurück Button gedrückt wurde
+                if (isset ($_POST["prevqu"])) {
+                $_SESSION['question_number'] --;
+                }
 
+echo $_SESSION['question_number'];
      //Verarbeitung der Antwort
      if (isset ($_POST["nextqu"]) || isset($_POST["prevqu"]) || isset($_POST["sendsurvey"]) || isset($_POST["save"])) {
-          if ($_SESSION['question_number'] < $_SESSION['num_of_questions'])
+
+          if ($_SESSION['question_number'] <= $_SESSION['num_of_questions'])
             {
+
                 if (isset($_POST["points"]))
                   {
+
                     //Punkte in DB speichern
-                    inject_rating ($_SESSION['mnr'], $_SESSION['question_number'], $s_token, $_POST["points"]);
+                    inject_rating ($_SESSION['mnr'], $_SESSION['question_number']-1, $s_token, $_POST["points"]);
                   }
             }
-           else {
+            }
+           if (isset($_POST["comment"])){
               //Kommentar in DB speichern
               inject_comment($_POST["comment"], $_SESSION['mnr'], $s_token);
                 }
-        }
+
          //Verarbeitung, wenn Fragebogen abschicken Button gedrückt wurde
           if (isset ($_POST["sendsurvey"])) {
           set_status($_SESSION['mnr'], $s_token);
-          inject_comment($_POST["comment"], $_SESSION['mnr'], $s_token);
+          //inject_comment($_POST["comment"], $_SESSION['mnr'], $s_token);
           echo "<h4> Vielen Dank für die Beantwortung des Fragebogens: ".htmlentities($s_title)."</h4>";
           }
     if (isset ($_POST["save"]) || isset($_POST["sendsurvey"])){
     echo '<a href="activated_surveys.php"> Hier können Sie weitere Fragebögen beantworten </a> </br>';
     echo '<a href="logout.php"> Ausloggen </a>';
     exit();}
-
-
-
-
-
-
-    //Verarbeitung, wenn Nächste Button gedrückt wurde
-    if (isset ($_POST["nextqu"]) == true) {
-    $_SESSION['question_number'] ++;
-    }
-    //Verarbeitung, wenn Zurück Button gedrückt wurde
-    if (isset ($_POST["prevqu"]) ==true ) {
-    $_SESSION['question_number'] --;
-    }
-
-
 
     echo "<h2> Fragebogen: " . $s_title . "</h2>";
 ?>
