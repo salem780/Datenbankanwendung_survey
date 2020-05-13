@@ -18,7 +18,7 @@ exit;
 }
 
 
-echo "<h1> Fragebogen für Kurs aktivieren </h1>";
+echo "<h1> Fragebogen für Kurs freischalten </h1>";
 //Combobox zum Auswählen des zu aktivierenden Fragebogens
 echo "<form method='POST'>";
 echo "<select name='surveys'>";
@@ -31,7 +31,6 @@ echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a>";
 
     if(isset($_POST["submit_survey"])){
 
-
     $selected_survey = $_POST['surveys'];
 
     //Kürzel des ausgewählten Fragebogens selektieren
@@ -40,6 +39,11 @@ echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a>";
     $s_token = $s_token["s_token"];
 
     $courses = $db->query("select c_token from course where c_token not in (select c_token from activation where s_token = '".$s_token."');");
+    //Prüfen, ob ein Kurs für den ausgewählte Fragebogen existiert, für den der Fragebogen noch nicht freigeschaltet wurde
+    if($courses->num_rows == 0){
+    echo "<br>Dieser Fragebogen ist bereits für alle Kurse freigeschaltet!<br>";
+    exit;
+    }
 
     echo "<br> Diesen Fragebogen: '".$selected_survey."' für einen der folgenden Kurse aktivieren: <br><br>";
     echo "<form method='POST' action='processing_activate_survey.php'>";
