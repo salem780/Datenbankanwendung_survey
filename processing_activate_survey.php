@@ -24,7 +24,7 @@ include "db_connection.php";
     $db->query("insert into answered (MNR, s_token, status) values ('".$row["MNR"]."', '".$s_token."', 0);");
  }
 
- echo "Der Fragebogem '".$s_title."' wurde für den folgenden Kurs '".$selected_course."' erfolgreich freigeschaltet! <br>";
+ echo "Der Fragebogem '".htmlentities($s_title)."' wurde für den folgenden Kurs '".htmlentities($selected_course)."' erfolgreich freigeschaltet! <br>";
  echo "<a href='surveyor_logged.php'> Zurück zur Startseite</a>";
 
 ?>
