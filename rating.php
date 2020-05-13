@@ -91,6 +91,7 @@ while ($row = mysqli_fetch_assoc($result))
 echo '<tr> <td> '. htmlentities($row["id"]). '</td>';
 echo '<td> '. htmlentities($row["text"]). '</td>';
 $q_result= $evaluation->get_results(htmlentities($row["id"]));
+
 echo '<td>' .round($q_result->average,2).'</td>';
 echo '<td>' . $q_result->min . '</td>';
 echo '<td>' . $q_result->max . '</td>';
@@ -100,7 +101,7 @@ echo '</tr>';
 echo "</table></form>";
 
 //Kommentarliste ausgeben
-echo $evaluation->all_comments();
+echo $evaluation->get_comments($db);
 }
 ?>
 </div>

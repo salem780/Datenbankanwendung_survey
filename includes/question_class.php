@@ -26,12 +26,11 @@ $this->s_token = $s_token;
 $this->c_token = $c_token;
 $db = new mysqli("localhost", "root", "", "survey");
 $this->calc_result($db);
-$this->get_comments($db);
 
 
 }
-//Prozedur, die alle Kommentare zum Fragebogen ausliest und in einem Array speichert
-private function get_comments ($db){
+//Prozedur, die alle Kommentare zum Fragebogen ausliest und mit Leerzeile als Liste ausgibt
+public function get_comments ($db){
 $this->comments = array();
 $sql = "select comment from answered a, student s WHERE a.mnr=s.mnr AND status = '1' AND c_token = '" . $this->c_token . "' AND a.s_token = '" . $this->s_token . "' ;";
 $result = mysqli_query ($db, $sql);
@@ -39,12 +38,9 @@ while ($row = mysqli_fetch_assoc($result))
 {
 $this->comments[] = htmlentities($row["comment"]);
 }
-}
-
-//Zugriffsmethode, um alle Kommentare zusammen als Liste auszugeben
-public function all_comments ()
-{  for ($x=0; $x<count($this->comments); $x++) {
+for ($x=0; $x<count($this->comments); $x++) {
 echo "<p>" . $this->comments[$x] . "</p> ";
+
 }
 }
 
