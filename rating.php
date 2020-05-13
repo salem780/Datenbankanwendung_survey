@@ -42,7 +42,8 @@ $_SESSION['s_token'] = htmlentities($result["s_token"]);
 
 
 //Kurse auslesen, die für diesen Fragebogenkürzel freigeschaltet sind
-$coursetoken = $db->query("select c_token from activation a, answered an where an.status = '1' AND an.s_token = a.s_token AND a.s_token ='".$_SESSION['s_token']."';");
+$coursetoken = $db->query("select distinct c_token from student s, answered an where an.status = '1'AND an.mnr = s.mnr AND an.s_token ='".$_SESSION['s_token']."' ;");
+// muss mir alle matrikelnummern holen und dann überprüfen
 
 //Dropdown zur Kursauswahl
 echo "<select name='coursetoken'>";
@@ -90,6 +91,7 @@ while ($row = mysqli_fetch_assoc($result))
 echo '<tr> <td> '. htmlentities($row["id"]). '</td>';
 echo '<td> '. htmlentities($row["text"]). '</td>';
 $q_result= $evaluation->get_results(htmlentities($row["id"]));
+
 echo '<td>' .round($q_result->average,2).'</td>';
 echo '<td>' . $q_result->min . '</td>';
 echo '<td>' . $q_result->max . '</td>';
@@ -99,7 +101,7 @@ echo '</tr>';
 echo "</table></form>";
 
 //Kommentarliste ausgeben
-echo $evaluation->all_comments();
+echo $evaluation->get_comments($db);
 }
 ?>
 </div>
