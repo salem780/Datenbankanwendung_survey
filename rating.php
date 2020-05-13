@@ -34,17 +34,13 @@ echo "<input type='submit' name='titlesearch' value='Suchen' />";
 if(isset($_POST["titlesearch"])){
 $selected_survey = htmlentities($_POST['surveytitles']);
 $_SESSION["surveytitles"] = $selected_survey;
-
 //Surveytoken in Sessionvariable speichern
-$sql = $db->query("select s_token from survey where s_title = '".$_SESSION['surveytitles']."';");
-$result = mysqli_fetch_assoc($sql);
+$surveytoken = $db->query("select s_token from survey where s_title = '".$_SESSION['surveytitles']."';");
+$result = mysqli_fetch_assoc($surveytoken);
 $_SESSION['s_token'] = htmlentities($result["s_token"]);
-
 
 //Kurse auslesen, die für diesen Fragebogenkürzel freigeschaltet sind
 $coursetoken = $db->query("select distinct c_token from student s, answered an where an.status = '1'AND an.mnr = s.mnr AND an.s_token ='".$_SESSION['s_token']."' ;");
-// muss mir alle matrikelnummern holen und dann überprüfen
-
 //Dropdown zur Kursauswahl
 echo "<select name='coursetoken'>";
 while($row = mysqli_fetch_assoc($coursetoken)){
