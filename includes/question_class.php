@@ -18,7 +18,7 @@ public $c_token;
 private $results;
 private $comments;
 
-//Konstruktor, der das Objekt Gesamtauswertung beim Aufruf in rating.php (line83) erzeugt
+//Konstruktor, der das Objekt Gesamtauswertung beim Aufruf in rating.php erzeugt
 //beim Aufruf des Konstruktors werden die Ergebnisse der Fragen des Fragebogens berechnet
 public function __construct ($s_token, $c_token)
 {
@@ -27,6 +27,7 @@ $this->c_token = $c_token;
 $db = new mysqli("localhost", "root", "", "survey");
 $this->calc_result($db);
 }
+
 //Prozedur, die alle Kommentare zum Fragebogen ausliest und mit Leerzeile als Liste ausgibt
 public function get_comments ($db){
 $this->comments = array();
@@ -58,7 +59,7 @@ $this->results[]= $q_result;
 }
 }
 
-//Zugriffsmethode, die zur jeweiligen Frage die im Array gespeicherten Werte ausgibt (aufgerufen in line93 rating.php)
+//Zugriffsmethode, die zur jeweiligen Frage die im Array gespeicherten Werte ausgibt
 public function get_results ($id)
 { return $this->results[$id];
 }
