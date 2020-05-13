@@ -21,7 +21,7 @@ $courses = $db->query("select c_token from course;");
 <form action="processing_create_survey.php" method="POST">
 <table>
 <tr>
-<th> <label>Titel: </th> <th> <input type="text" name="s_title" required> </label> </th>
+<th> <label>Titel: </th> <th> <input type="text" name="s_title" maxlength="32" required> </label> </th>
 </tr>
 <tr>
 <th> <label>Kürzel: </th> <th> <input type="text" name="s_token" maxlength="4" required> </label> </th>

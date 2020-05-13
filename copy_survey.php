@@ -8,6 +8,14 @@ include "db_connection.php";
 //alle Fragebögen auslesen, die der User erstellt hat
 $surveys = $db->query("select s_title from survey where username = '".$_SESSION['username']."';");
 
+//Prüfen, ob ein Fragebogen erstellt wurde
+if($surveys->num_rows == 0){
+echo "Sie haben noch keinen Fragebogen erstellt!<br>";
+echo "<a href='create_survey.php'>Einen Fragebogen erstellen</a><br>";
+echo "<a href='surveyor_logged.php'>Zurück zur Startseite</a>";
+exit;
+}
+
 //Kurse auslesen:
 $courses = $db->query("select c_token from course;");
 
@@ -38,7 +46,7 @@ echo "<option>".htmlentities($row["s_title"])."</option>";
 </th>
 </tr>
 <tr>
-<th> <label>Neuer Titel: </th> <th> <input type="text" name="s_title" required> </label> </th>
+<th> <label>Neuer Titel: </th> <th> <input type="text" name="s_title" maxlength="32" required> </label> </th>
 </tr>
 <tr>
 <th> <label>Neues Kürzel: </th> <th> <input type="text" name="s_token" maxlength="4" required> </label> </th>

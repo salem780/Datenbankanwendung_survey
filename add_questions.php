@@ -17,7 +17,7 @@ $number_of_questions = $db->real_escape_string($_POST["number_of_questions"]);
  echo "<form action='send_added_questions.php' method='post'>";
           for($i=1; $i <= $number_of_questions; $i++){
           echo "<label for='text'>Frage $i </label> <br>
-          <textarea id='text' name='questions[]' cols='50' rows='4' required></textarea> <br> <br>";
+          <textarea id='text' name='questions[]' cols='50' rows='4' maxlength='256' required></textarea> <br> <br>";
           }
           //Verstecktes Inputfeld, um Umfragenkürzel mit zu übergeben
           echo "<input type='hidden' name='s_token' value=".$_POST["s_token"].">";
