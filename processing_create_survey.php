@@ -60,7 +60,7 @@ echo "<form action='send_questions.php' method='post'>";
 //    Dynamische Erzeugung der Felder durch eine for Schleife
       for($i=1; $i <= $number_of_questions; $i++){
       echo "<label for='text'>Frage $i </label> <br>
-      <textarea id='text' name='questions[]' cols='50' rows='4' required></textarea> <br> <br>";
+      <textarea id='text' name='questions[]' cols='50' rows='4' maxlength='256' required></textarea> <br> <br>";
       }
       //Verstecktes Input, um Umfragenkürzel mit zu übergeben
       echo "<input type='hidden' value=".$s_token." name='s_token'/>";
