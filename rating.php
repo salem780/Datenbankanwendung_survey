@@ -95,7 +95,6 @@ echo '<td>' . round($q_result->std_deviation,2) . '</td>';
 echo '</tr>';
 }
 echo "</table></form>";
-
 //Kommentarliste ausgeben
 echo $evaluation->get_comments($db);
 }
