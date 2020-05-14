@@ -30,7 +30,7 @@ if ($number_of_rows > 0){
 //Bewertung für Frage eintragen
 function inject_rating($mnr, $question_number, $s_token, $points){
     include "db_connection.php";
-        //Bisheriges Rating löschen
+        //Falls vorhanden, bisheriges Rating löschen
         $stmt = $db->prepare('DELETE from Rating where mnr = ? AND id = ? AND s_token = ?;');
         $stmt->bind_param('sss', $mnr, $question_number, $s_token);
         $stmt->execute();

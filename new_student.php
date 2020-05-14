@@ -27,16 +27,16 @@ if (!isset($_POST['course']) AND !isset($_SESSION['c_token'])){
   $c_token = $course[0];
   $_SESSION["c_token"] = $c_token;
  } else{
-  $course = $_SESSION['c_token'];
-  $c_token = $course;
+  $c_token = $_SESSION['c_token'];
  }
+
+  echo "<h4>". htmlentities($c_token) . "</h4>";
+
  //Matrikelnummern des Kurses in $mnr speichern
     $stmt = $db->prepare('SELECT mnr FROM Student WHERE c_token = ?');
 	$stmt->bind_param('s', $c_token);
 	$stmt->execute();
     $stmt->bind_result($mnr);
-
- echo "<h4>". htmlentities($_SESSION['c_token']) . "</h4>";
 
 //Ausgeben der Daten
     while ($stmt->fetch()) {
