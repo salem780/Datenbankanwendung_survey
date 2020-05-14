@@ -68,7 +68,7 @@
                 $_SESSION['question_number'] --;
                 }
 
-echo $_SESSION['question_number'];
+
      //Verarbeitung der Antwort
      if (isset ($_POST["nextqu"]) || isset($_POST["prevqu"]) || isset($_POST["sendsurvey"]) || isset($_POST["save"])) {
 
