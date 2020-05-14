@@ -84,9 +84,9 @@ if (isset($_POST["coursesearch"])) {
     //Alle Fragen und Berechnungen des Fragebogens durch Methodenaufruf ausgeben
     $result = mysqli_query($db, "select id, text from question WHERE s_token ='" . $_SESSION['s_token'] . "';");
     while ($row = mysqli_fetch_assoc($result)) {
-        echo '<tr> <td> ' . htmlentities($row["id"]) . '</td>';
+        echo '<tr> <td> ' . ($row["id"]) . '</td>';
         echo '<td> ' . htmlentities($row["text"]) . '</td>';
-        $q_result = $evaluation->get_results(htmlentities($row["id"]));
+        $q_result = $evaluation->get_results($row["id"]);
 
         echo '<td>' . round($q_result->average, 2) . '</td>';
         echo '<td>' . $q_result->min . '</td>';
