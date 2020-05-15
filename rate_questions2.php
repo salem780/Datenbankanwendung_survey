@@ -1,4 +1,3 @@
-
   <!DOCTYPE html>
   <html lang="de">
     <head>
@@ -6,6 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Fragebogen ausfüllen</title>
     </head>
+
       <?php
   //Zugriff über URL verhindern
   if (!isset($_POST['survey']) && !isset($_POST['nextqu']) && !isset($_POST['prevqu']) && !isset($_POST['sendsurvey']) && !isset($_POST['save'])) {
@@ -20,14 +20,14 @@
   include 'functions.php';
 
   //Funktion zur Erstellung und Vorbelegung der Radiobuttons
-  function checkRadioButton($a_value, $pre_value)
-  {
+  function checkRadioButton($a_value, $pre_value) {
       echo '<input type="radio"  name="points" value="' . ($a_value) . '" ';
       if ($a_value == $pre_value)
           echo " checked ";
       echo '/>';
       echo '<label for="points"> ' . htmlentities($a_value) . ' </label> ';
   }
+
   ?>
 
       <body>
@@ -47,7 +47,7 @@
   $questions                    = $db->query("Select * from question WHERE question.s_token = '" . htmlentities($s_token) . "';");
   $num_of_questions             = $questions->num_rows;
   $_SESSION['num_of_questions'] = $num_of_questions;
-  //Eine weitere Seite hinzufügen für das Kommentarfeld
+  //Eine weitere Seite hinzufügen
   $_SESSION['num_of_questions']++;
 
 
@@ -63,23 +63,18 @@
 
 
   //Verarbeitung der Antwort
-  echo $_SESSION['question_number'];
   if (isset($_POST["nextqu"]) || isset($_POST["prevqu"]) || isset($_POST["sendsurvey"]) || isset($_POST["save"])) {
-      // Wenn es sich um eine Frage handelt, dann die Funktion inject_rating aufrufen
-      if ($_SESSION['question_number'] < $_SESSION['num_of_questions']) {
+        // Wenn es sich um eine Frage handelt, dann die Funktion inject_rating aufrufen
+        if ($_SESSION['question_number'] < $_SESSION['num_of_questions']) {
 
-          if (isset($_POST["points"])) {
-                if (isset($_POST["sendsurvey"]) || isset($_POST["save"])) {
-                //Um Anomalien zu vermeiden, question +1
-                inject_rating($_SESSION['mnr'], $_SESSION['question_number']+1, $s_token, $_POST["points"]);
-                }
-          else{ //Punkte in DB speichern
-              echo $_SESSION['question_number'];
-              inject_rating($_SESSION['mnr'], $_SESSION['question_number'], $s_token, $_POST["points"]);
-          }
-      }
-  }
-  }
+            if (isset($_POST["points"])) {
+                  //Punkte in Db speichern
+                  inject_rating($_SESSION['mnr'], $_SESSION['question_number'], $s_token, $_POST["points"]);
+                  }
+
+        }
+   }
+
   if (isset($_POST["comment"])) {
       //Kommentar in DB speichern
       inject_comment($_POST["comment"], $_SESSION['mnr'], $s_token);
@@ -163,7 +158,7 @@
   ?>
 
   <br/>
-              <!-- Buttons erzeugen: Zurück, Vorwärts, Fragebogen abschicken, Speichern fertig beantworten-->
+              <!-- Buttons erzeugen: Zurück, Vorwärts, Fragebogen abschicken, Später fertig beantworten-->
               <br/>
               <input type="submit"
                   <?php if ($_SESSION["question_number"] == 1) echo "disabled";?>
